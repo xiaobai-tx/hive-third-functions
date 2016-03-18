@@ -2,6 +2,7 @@ package cc.shanruifeng.functions.date;
 
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -35,11 +36,11 @@ public class UDFZodiacSignCn extends UDF {
 
     public Text evaluate(Date birthday) {
         DateTime dateTime = new DateTime(birthday);
-        return evaluate(dateTime.getMonthOfYear(), dateTime.getDayOfMonth());
+        return evaluate(new IntWritable(dateTime.getMonthOfYear()), new IntWritable(dateTime.getDayOfMonth()));
     }
 
-    public Text evaluate(int month, int day) {
-        result.set(getZodiac(month, day));
+    public Text evaluate(IntWritable month, IntWritable day) {
+        result.set(getZodiac(month.get(), day.get()));
         return result;
     }
 
