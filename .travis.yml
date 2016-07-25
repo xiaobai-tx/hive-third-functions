@@ -13,9 +13,11 @@ cache:
   directories:
     - $HOME/.m2/repository
 
+install:
+  - wget http://www.datanucleus.org/downloads/maven2/javax/jdo/jdo2-api/2.3-ec/jdo2-api-2.3-ec.jar -O $HOME/jdo2-api-2.3-ec.jar
+  - mvn install:install-file -DgroupId=javax.jdo -DartifactId=jdo2-api -Dversion=2.3-ec -Dpackaging=jar -Dfile=$HOME/jdo2-api-2.3-ec.jar
+
 script:
-  - wget http://www.datanucleus.org/downloads/maven2/javax/jdo/jdo2-api/2.3-ec/jdo2-api-2.3-ec.jar -O ~/jdo2-api-2.3-ec.jar
-  - mvn install:install-file -DgroupId=javax.jdo -DartifactId=jdo2-api -Dversion=2.3-ec -Dpackaging=jar -Dfile=~/jdo2-api-2.3-ec.jar
   - jdk_switcher use openjdk6
   - mvn clean package
   - jdk_switcher use openjdk7
