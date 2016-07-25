@@ -22,7 +22,7 @@ mvn clean package -DskipTests
 
 It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
-> current lastest version is `2.0.0`
+> current latest version is `2.0.0`
 
 ## functions
 
