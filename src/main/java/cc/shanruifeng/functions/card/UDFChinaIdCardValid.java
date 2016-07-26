@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.card;
 
 import cc.shanruifeng.functions.utils.CardUtils;
+import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.BooleanWritable;
 import org.apache.hadoop.io.Text;
 
@@ -9,7 +10,7 @@ import org.apache.hadoop.io.Text;
  * @date 2016-07-25
  * @time 20:15
  */
-public class UDFChinaIdCardValid {
+public class UDFChinaIdCardValid extends UDF {
     private BooleanWritable result = new BooleanWritable();
 
     public UDFChinaIdCardValid() {

@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.card;
 
 import cc.shanruifeng.functions.utils.CardUtils;
+import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.Text;
 
 /**
@@ -8,7 +9,7 @@ import org.apache.hadoop.io.Text;
  */
 
 //身份证->json
-public class UDFChinaIdCardInfo {
+public class UDFChinaIdCardInfo extends UDF {
     private Text result = new Text();
 
     public UDFChinaIdCardInfo() {
