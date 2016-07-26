@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Some useful custom hive udf functions, especial json functions.
+Some useful custom hive udf functions, especial array and json functions.
 
 > Note:
 > hive-third-functions support hive-0.11.0 or higher.
@@ -35,7 +35,7 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 You can also directly download file from [release page](https://github.com/aaronshan/hive-third-functions/releases).
 
-> current latest version is `2.0.0`
+> current latest version is `2.1.0`
 
 ## Functions
 
@@ -52,6 +52,19 @@ You can also directly download file from [release page](https://github.com/aaron
 | function| description |
 |:--|:--|
 |array_contains(array, value) -> boolean | whether ARRAY contains value or not.|
+|array_intersect(array, array) -> array | returns the two array's intersection, without duplicates..|
+|array_max(array<E>) -> E | returns the maximum value of input array.|
+|array_min(array<E>) -> E | returns the minimum value of input array.|
+|array_join(array, delimiter, null_replacement) -> string | concatenates the elements of the given array using the delimiter and an optional `null_replacement` to replace nulls.|
+|array_distinct(array) -> array | remove duplicate values from the array.|
+|array_position(array, value) -> long | returns the position of the first occurrence of the element in array (or 0 if not found).|
+|array_remove(array, value) -> array | remove all elements that equal element from array.|
+|array_reverse(array) -> array | reverse the array element.|
+|array_sort(array) -> array | sorts and returns the array x. The elements of x must be orderable..|
+|array_concat(array, array) -> array | concatenates two arrays.|
+|array_value_count(array, value) -> long | count ARRAY's element number that element value equals given value.|
+|array_slice(array, start, length) -> array | subsets array starting from index start (or starting from the end if start is negative) with a length of length|
+|array_element_at(array<E>, index) -> E | returns element of array at given index. If index < 0, element_at accesses elements from the last to the first.|
 
 ### 3. date functions
 
@@ -62,7 +75,7 @@ You can also directly download file from [release page](https://github.com/aaron
 |zodiac_cn(date_string \| date) -> string | convert date to zodiac chinese | 
 |type_of_day(date_string \| date) -> string | for chinese. 获取日期的类型(1: 法定节假日, 2: 正常周末, 3: 正常工作日 4:攒假的工作日),错误返回-1. |
 
-### 4. JSON functions
+### 4. json functions
 | function| description |
 |:--|:--|
 |json_array_get(json, jsonPath) -> array(varchar) |returns the element at the specified index into the `json_array`. The index is zero-based.|
@@ -73,7 +86,7 @@ You can also directly download file from [release page](https://github.com/aaron
 |json_extract_scalar(json, jsonPath) -> array(varchar) |like `json_extract`, but returns the result value as a string (as opposed to being encoded as JSON).|
 |json_size(json, jsonPath) -> array(varchar) |like `json_extract`, but returns the size of the value. For objects or arrays, the size is the number of members, and the size of a scalar value is zero.|
 
-### 5. China Id Card functions
+### 5. china id card functions
 
 | function| description |
 |:--|:--|
@@ -90,8 +103,21 @@ You can also directly download file from [release page](https://github.com/aaron
 Put these statements into `${HOME}/.hiverc` or exec its on hive cli env.
 
 ```
-add jar ${jar_location_dir}/hive-third-functions-1.0-SNAPSHOT-shaded.jar
+add jar ${jar_location_dir}/hive-third-functions-${version}-shaded.jar
 create temporary function array_contains as 'cc.shanruifeng.functions.array.UDFArrayContains';
+create temporary function array_intersect as 'cc.shanruifeng.functions.array.UDFArrayIntersect';
+create temporary function array_max as 'cc.shanruifeng.functions.array.UDFArrayMax';
+create temporary function array_min as 'cc.shanruifeng.functions.array.UDFArrayMin';
+create temporary function array_join as 'cc.shanruifeng.functions.array.UDFArrayJoin';
+create temporary function array_distinct as 'cc.shanruifeng.functions.array.UDFArrayDistinct';
+create temporary function array_position as 'cc.shanruifeng.functions.array.UDFArrayPosition';
+create temporary function array_remove as 'cc.shanruifeng.functions.array.UDFArrayRemove';
+create temporary function array_reverse as 'cc.shanruifeng.functions.array.UDFArrayReverse';
+create temporary function array_sort as 'cc.shanruifeng.functions.array.UDFArraySort';
+create temporary function array_concat as 'cc.shanruifeng.functions.array.UDFArrayConcat';
+create temporary function array_value_count as 'cc.shanruifeng.functions.array.UDFArrayValueCount';
+create temporary function array_slice as 'cc.shanruifeng.functions.array.UDFArraySlice';
+create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayElementAt';
 create temporary function day_of_week as 'cc.shanruifeng.functions.date.UDFDayOfWeek';
 create temporary function type_of_day as 'cc.shanruifeng.functions.date.UDFTypeOfDay'; 
 create temporary function zodiac_cn as 'cc.shanruifeng.functions.date.UDFZodiacSignCn';
@@ -117,18 +143,18 @@ create temporary function id_card_info as 'cc.shanruifeng.functions.card.UDFChin
 
 You can use these statements on hive cli env get detail of function.
 ```
-hive> describe function zodiacCn;
-zodiacCn(date) - from the input date string or separate month and day arguments, returns the sing of the Zodiac.
+hive> describe function zodiac_cn;
+zodiac_cn(date) - from the input date string or separate month and day arguments, returns the sing of the Zodiac.
 ```
 
 or
 
 ```
-hive> describe function extended zodiacCn;
-zodiacCn(date) - from the input date string or separate month and day arguments, returns the sing of the Zodiac.
+hive> describe function extended zodiac_cn;
+zodiac_cn(date) - from the input date string or separate month and day arguments, returns the sing of the Zodiac.
 Example:
- > select zodiacCn(date_string) from src;
- > select zodiacCn(month, day) from src;
+ > select zodiac_cn(date_string) from src;
+ > select zodiac_cn(month, day) from src;
 ```
 
 ### example
@@ -146,6 +172,23 @@ select type_of_day('2016-07-15') => 3
 select type_of_day('2016-09-18') => 4
 select zodiac_cn('1989-01-08') => 魔羯座
 select zodiac_en('1989-01-08') => Capricorn
+```
+
+```
+select array_contains(array(16,12,18,9), 12) => true
+select array_intersect(array(16,12,18,9,null), array(14,9,6,18,null)) => [null,9,18]
+select array_max(array(16,13,12,13,18,16,9,18)) => 18
+select array_min(array(16,12,18,9)) => 9
+select array_join(array(16,12,18,9,null), '#','=') => 16#12#18#9#=
+select array_distinct(array(16,13,12,13,18,16,9,18)) => [9,12,13,16,18]
+select array_position(array(16,13,12,13,18,16,9,18), 13) => 2
+select array_remove(array(16,13,12,13,18,16,9,18), 13) => [16,12,18,16,9,18]
+select array_reverse(array(16,12,18,9)) => [9,18,12,16]
+select array_sort(array(16,13,12,13,18,16,9,18)) => [9,12,13,13,16,16,18,18]
+select array_concat(array(16,12,18,9,null), array(14,9,6,18,null)) => [16,12,18,9,null,14,9,6,18,null]
+select array_value_count(array(16,13,12,13,18,16,9,18), 13) => 2
+select array_slice(array(16,13,12,13,18,16,9,18), -2, 3) => [9,18]
+select array_element_at(array(16,13,12,13,18,16,9,18), -1) => 18
 ```
 
 ```
