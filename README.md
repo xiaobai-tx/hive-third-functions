@@ -1,30 +1,43 @@
 #hive-third-functions [![Build Status](https://travis-ci.org/aaronshan/hive-third-functions.svg?branch=master)](https://travis-ci.org/aaronshan/hive-third-functions)
 
 ## Introduction
-some useful hive udf functions
+
+Some useful custom hive udf functions, especial json functions.
+
+> Note:
+> hive-third-functions support hive-0.11.0 or higher.
 
 ## Build
+
+### 1. install dependency
+
+Now, jdo2-api-2.3-ec.jar not available in the maven central repository, so we have to manually install it into our local maven repository.
 
 ```
 wget http://www.datanucleus.org/downloads/maven2/javax/jdo/jdo2-api/2.3-ec/jdo2-api-2.3-ec.jar -O ~/jdo2-api-2.3-ec.jar
 mvn install:install-file -DgroupId=javax.jdo -DartifactId=jdo2-api -Dversion=2.3-ec -Dpackaging=jar -Dfile=~/jdo2-api-2.3-ec.jar
+```
+
+### 2. mvn package 
+
+```
 cd ${project_home}
 mvn clean package
 ```
 
-If you want skip unit tests, please run:
+If you want to skip unit tests, please run:
 ```
-wget http://www.datanucleus.org/downloads/maven2/javax/jdo/jdo2-api/2.3-ec/jdo2-api-2.3-ec.jar -O ~/jdo2-api-2.3-ec.jar
-mvn install:install-file -DgroupId=javax.jdo -DartifactId=jdo2-api -Dversion=2.3-ec -Dpackaging=jar -Dfile=~/jdo2-api-2.3-ec.jar
 cd ${project_home}
 mvn clean package -DskipTests
 ```
 
 It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
+You can also directly download file from [release page](https://github.com/aaronshan/hive-third-functions/releases).
+
 > current latest version is `2.0.0`
 
-## functions
+## Functions
 
 ### 1. string functions
 
@@ -44,10 +57,10 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 | function| description |
 |:--|:--|
-|dayofweek(date_string \| date) -> int | day of week,if monday,return 1, sunday return 7, error return null.|
+|day_of_week(date_string \| date) -> int | day of week,if monday,return 1, sunday return 7, error return null.|
 |zodiac_en(date_string \| date) -> string | convert date to zodiac|
 |zodiac_cn(date_string \| date) -> string | convert date to zodiac chinese | 
-|typeofdate(date_string \| date) -> string | for chinese. 获取日期的类型(1: 法定节假日, 2: 正常周末, 3: 正常工作日 4:攒假的工作日),错误返回-1. |
+|type_of_day(date_string \| date) -> string | for chinese. 获取日期的类型(1: 法定节假日, 2: 正常周末, 3: 正常工作日 4:攒假的工作日),错误返回-1. |
 
 ### 4. JSON functions
 | function| description |
@@ -74,13 +87,13 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 ## Use
 
-Put these statements into ${HOME}/.hiverc or exec its on hive cli env.
+Put these statements into `${HOME}/.hiverc` or exec its on hive cli env.
 
 ```
 add jar ${jar_location_dir}/hive-third-functions-1.0-SNAPSHOT-shaded.jar
 create temporary function array_contains as 'cc.shanruifeng.functions.array.UDFArrayContains';
-create temporary function dayOfWeek as 'cc.shanruifeng.functions.date.UDFDayOfWeek';
-create temporary function typeOfDay as 'cc.shanruifeng.functions.date.UDFTypeOfDay'; 
+create temporary function day_of_week as 'cc.shanruifeng.functions.date.UDFDayOfWeek';
+create temporary function type_of_day as 'cc.shanruifeng.functions.date.UDFTypeOfDay'; 
 create temporary function zodiac_cn as 'cc.shanruifeng.functions.date.UDFZodiacSignCn';
 create temporary function zodiac_en as 'cc.shanruifeng.functions.date.UDFZodiacSignEn';
 create temporary function pinyin as 'cc.shanruifeng.functions.string.UDFChineseToPinYin';
@@ -126,25 +139,25 @@ Example:
 ```
 
 ```
-select dayOfWeek('2016-07-12') => 2
-select typeOfDay('2016-10-01') => 1
-select typeOfDay('2016-07-16') => 2
-select typeOfDay('2016-07-15') => 3
-select typeOfDay('2016-09-18') => 4
+select day_of_week('2016-07-12') => 2
+select type_of_day('2016-10-01') => 1
+select type_of_day('2016-07-16') => 2
+select type_of_day('2016-07-15') => 3
+select type_of_day('2016-09-18') => 4
 select zodiac_cn('1989-01-08') => 魔羯座
 select zodiac_en('1989-01-08') => Capricorn
 ```
 
 ```
-select id_card_info('110101198901084517') => {"area":"东城区","valid":true,"province":"北京市","gender":"男","city":"北京市"}
+select id_card_info('110101198901084517') => {"valid":true,"area":"东城区","province":"北京市","gender":"男","city":"北京市"}
 ```
 
 ```
 select json_array_get("[{\"a\":{\"b\":\"13\"}}, {\"a\":{\"b\":\"18\"}}, {\"a\":{\"b\":\"12\"}}]", 1); => {"a":{"b":"18"}}
-select json_array_get('["a", "b", "c"]', 0); => 'a'
-select json_array_get('["a", "b", "c"]', 1); => 'b'
-select json_array_get('["c", "b", "a"]', -1); => 'a'
-select json_array_get('["c", "b", "a"]', -2); => 'b'
+select json_array_get('["a", "b", "c"]', 0); => a
+select json_array_get('["a", "b", "c"]', 1); => b
+select json_array_get('["c", "b", "a"]', -1); => a
+select json_array_get('["c", "b", "a"]', -2); => b
 select json_array_get('[]', 0); => null
 select json_array_get('["a", "b", "c"]', 10); => null
 select json_array_get('["c", "b", "a"]', -10); => null
