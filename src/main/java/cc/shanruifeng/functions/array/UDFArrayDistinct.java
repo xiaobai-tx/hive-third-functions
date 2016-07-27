@@ -2,6 +2,7 @@ package cc.shanruifeng.functions.array;
 
 import it.unimi.dsi.fastutil.ints.IntArrays;
 import java.util.ArrayList;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -16,6 +17,9 @@ import static cc.shanruifeng.functions.utils.ArrayUtils.IntArrayCompare;
  * @date 2016-07-26
  * @time 17:29
  */
+@Description(name = "array_distinct"
+        , value = "_FUNC_(array) - remove duplicate values from the array."
+        , extended = "Example:\n > select _FUNC_(array) from src;")
 public class UDFArrayDistinct extends GenericUDF {
     private static final int INITIAL_SIZE = 128;
     private static final int ARG_COUNT = 1; // Number of arguments to this UDF

@@ -4,6 +4,7 @@ import cc.shanruifeng.functions.utils.json.JsonExtract;
 import cc.shanruifeng.functions.utils.json.JsonPath;
 import cc.shanruifeng.functions.utils.json.JsonUtils;
 import java.util.ArrayList;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
@@ -19,6 +20,9 @@ import org.apache.hadoop.io.Text;
  * @date 2016-07-25
  * @time 15:33
  */
+@Description(name = "json_array_extract_scalar", value = "_FUNC_(json, json_path) - extract json array by given jsonPath. but returns the result value as a string (as opposed to being encoded as JSON)."
+        , extended = "Example:\n"
+        + "  > SELECT _FUNC_(json_array, json_path) FROM src LIMIT 1;")
 public class UDFJsonArrayExtractScalar extends GenericUDF {
     private ObjectInspectorConverters.Converter[] converters;
 

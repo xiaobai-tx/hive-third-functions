@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.array;
 
 import java.util.ArrayList;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -18,6 +19,9 @@ import org.apache.hadoop.io.IntWritable;
  * @date 2016-07-27
  * @time 10:24
  */
+@Description(name = "array_slice"
+        , value = "_FUNC_(array<E>, start, length) - subsets array starting from index start (or starting from the end if start is negative) with a length of length."
+        , extended = "Example:\n > select _FUNC_(array, start, length) from src;")
 public class UDFArraySlice extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

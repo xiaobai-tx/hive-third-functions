@@ -1,5 +1,6 @@
 package cc.shanruifeng.functions.array;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -17,6 +18,9 @@ import org.apache.hadoop.io.Text;
  * @date 2016-07-26
  * @time 17:31
  */
+@Description(name = "array_join"
+        , value = "_FUNC_(array<E>, delimiter, null_replacement) - concatenates the elements of the given array using the delimiter and an optional null_replacement to replace nulls."
+        , extended = "Example:\n > select _FUNC_(array, delimiter) from src;\n> select _FUNC_(array, delimiter, null_replacement) from src;")
 public class UDFArrayJoin extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

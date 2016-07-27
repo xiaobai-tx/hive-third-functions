@@ -1,5 +1,6 @@
 package cc.shanruifeng.functions.array;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -16,6 +17,9 @@ import org.apache.hadoop.io.LongWritable;
  * @date 2016-07-26
  * @time 17:32
  */
+@Description(name = "array_position"
+        , value = "_FUNC_(array<E>, E) - returns the position of the first occurrence of the element in array (or 0 if not found)."
+        , extended = "Example:\n > select _FUNC_(array, value) from src;")
 public class UDFArrayPosition extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

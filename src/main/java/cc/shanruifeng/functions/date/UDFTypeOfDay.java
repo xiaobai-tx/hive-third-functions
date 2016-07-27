@@ -3,6 +3,7 @@ package cc.shanruifeng.functions.date;
 import cc.shanruifeng.functions.utils.ConfigUtils;
 import java.util.Calendar;
 import java.util.Map;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.hive.serde2.io.TimestampWritable;
 import org.apache.hadoop.io.IntWritable;
@@ -15,6 +16,9 @@ import org.joda.time.format.DateTimeFormatter;
  * @author ruifeng.shan
  * @date 15-9-1
  */
+@Description(name = "type_of_day"
+        , value = "_FUNC_(date) - get type of day in china. if normal festival, return 1; if weekend, return 2, if workday return 3, if weekend or festival but work, return 4; if error, return null."
+        , extended = "Example:\n > select _FUNC_(date_string) from src;\n > select _FUNC_(date) from src;")
 public class UDFTypeOfDay extends UDF {
     public final static DateTimeFormatter DEFAULT_DATE_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
     public final static Map<String, String> dayMap = ConfigUtils.getDayMap();

@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.array;
 
 import java.util.ArrayList;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -16,6 +17,9 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorUtils;
  * @date 2016-07-26
  * @time 18:07
  */
+@Description(name = "array_remove"
+        , value = "_FUNC_(array<E>, E) - remove all elements that equal element from array."
+        , extended = "Example:\n > select _FUNC_(array, value) from src;")
 public class UDFArrayRemove extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

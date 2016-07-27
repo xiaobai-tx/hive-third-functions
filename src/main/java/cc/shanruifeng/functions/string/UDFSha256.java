@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.string;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.io.Text;
 
 /**
@@ -8,6 +9,9 @@ import org.apache.hadoop.io.Text;
  * @date 2016-07-25
  * @time 14:29
  */
+@Description(name = "sha256"
+        , value = "_FUNC_(string) - get sha256 hash code by given input string."
+        , extended = "Example:\n > select _FUNC_(string) from src;")
 public class UDFSha256 {
     private Text result = new Text();
 

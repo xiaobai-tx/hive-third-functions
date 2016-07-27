@@ -51,19 +51,19 @@ You can also directly download file from [release page](https://github.com/aaron
 
 | function| description |
 |:--|:--|
-|array_contains(array, value) -> boolean | whether ARRAY contains value or not.|
-|array_intersect(array, array) -> array | returns the two array's intersection, without duplicates..|
+|array_contains(array<E>, E) -> boolean | whether array contains value or not.|
+|array_intersect(array, array) -> array | returns the two array's intersection, without duplicates.|
 |array_max(array<E>) -> E | returns the maximum value of input array.|
 |array_min(array<E>) -> E | returns the minimum value of input array.|
 |array_join(array, delimiter, null_replacement) -> string | concatenates the elements of the given array using the delimiter and an optional `null_replacement` to replace nulls.|
 |array_distinct(array) -> array | remove duplicate values from the array.|
-|array_position(array, value) -> long | returns the position of the first occurrence of the element in array (or 0 if not found).|
-|array_remove(array, value) -> array | remove all elements that equal element from array.|
+|array_position(array<E>, E) -> long | returns the position of the first occurrence of the element in array (or 0 if not found).|
+|array_remove(array<E>, E) -> array | remove all elements that equal element from array.|
 |array_reverse(array) -> array | reverse the array element.|
-|array_sort(array) -> array | sorts and returns the array x. The elements of x must be orderable..|
+|array_sort(array) -> array | sorts and returns the array. The elements of array must be orderable.|
 |array_concat(array, array) -> array | concatenates two arrays.|
-|array_value_count(array, value) -> long | count ARRAY's element number that element value equals given value.|
-|array_slice(array, start, length) -> array | subsets array starting from index start (or starting from the end if start is negative) with a length of length|
+|array_value_count(array<E>, E) -> long | count array's element number that element value equals given value.|
+|array_slice(array, start, length) -> array | subsets array starting from index start (or starting from the end if start is negative) with a length of length.|
 |array_element_at(array<E>, index) -> E | returns element of array at given index. If index < 0, element_at accesses elements from the last to the first.|
 
 ### 3. date functions
@@ -79,7 +79,7 @@ You can also directly download file from [release page](https://github.com/aaron
 | function| description |
 |:--|:--|
 |json_array_get(json, jsonPath) -> array(varchar) |returns the element at the specified index into the `json_array`. The index is zero-based.|
-|json_array_length(json, jsonPath) -> array(varchar) |Returns the array length of `json` (a string containing a JSON array).|
+|json_array_length(json, jsonPath) -> array(varchar) |returns the array length of `json` (a string containing a JSON array).|
 |json_array_extract(json, jsonPath) -> array(varchar) |extract json array by given jsonPath.|
 |json_array_extract_scalar(json, jsonPath) -> array(varchar) |like `json_array_extract`, but returns the result value as a string (as opposed to being encoded as JSON).|
 |json_extract(json, jsonPath) -> array(varchar) |extract json by given jsonPath.|

@@ -6,6 +6,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.Text;
 
@@ -16,6 +17,9 @@ import java.util.regex.Pattern;
  * Author: ruifengshan
  * Date: 23/03/2015
  */
+@Description(name = "pinyin"
+        , value = "_FUNC_(string) - get pinyin by given chinese."
+        , extended = "Example:\n > select _FUNC_(string) from src;")
 public class UDFChineseToPinYin extends UDF {
     private Text result = new Text();
 

@@ -1,6 +1,7 @@
 package cc.shanruifeng.functions.array;
 
 import java.util.ArrayList;
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -13,6 +14,9 @@ import org.apache.hadoop.hive.serde2.objectinspector.*;
  * @date 2016-07-26
  * @time 17:30
  */
+@Description(name = "array_concat"
+        , value = "_FUNC_(array, array) - concatenates two arrays."
+        , extended = "Example:\n > select _FUNC_(array, array) from src;")
 public class UDFArrayConcat extends GenericUDF {
     private static final int ARG_COUNT = 2; // Number of arguments to this UDF
     private transient ListObjectInspector leftArrayOI;

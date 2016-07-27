@@ -1,5 +1,6 @@
 package cc.shanruifeng.functions.array;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -16,6 +17,9 @@ import org.apache.hadoop.io.IntWritable;
  * @date 2016-07-27
  * @time 10:09
  */
+@Description(name = "array_element_at"
+        , value = "_FUNC_(array<E>, index) - returns element of array at given index. If index < 0, element_at accesses elements from the last to the first."
+        , extended = "Example:\n > select _FUNC_(array, index) from src;")
 public class UDFArrayElementAt extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

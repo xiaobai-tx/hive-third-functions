@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * Created by ruifengshan on 16/3/18.
  */
-@Description(name = "zodiacEn"
+@Description(name = "zodiac_en"
         , value = "_FUNC_(date) - from the input date string or separate month and day arguments, returns the sing of the Zodiac."
         , extended = "Example:\n > select _FUNC_(date_string) from src;\n > select _FUNC_(month, day) from src;")
 public class UDFZodiacSignEn extends UDF {

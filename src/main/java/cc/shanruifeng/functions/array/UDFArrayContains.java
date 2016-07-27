@@ -1,5 +1,6 @@
 package cc.shanruifeng.functions.array;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
@@ -15,6 +16,9 @@ import org.apache.hadoop.io.BooleanWritable;
  * @author ruifeng.shan
  * @date 2015-3-23
  */
+@Description(name = "array_contains"
+        , value = "_FUNC_(array<E>, E) - whether array contains value or not."
+        , extended = "Example:\n > select _FUNC_(array, value) from src;")
 public class UDFArrayContains extends GenericUDF {
 
     private static final int ARRAY_IDX = 0;

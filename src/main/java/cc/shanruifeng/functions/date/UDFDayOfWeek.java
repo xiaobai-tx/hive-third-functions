@@ -1,5 +1,6 @@
 package cc.shanruifeng.functions.date;
 
+import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.hive.serde2.io.TimestampWritable;
 import org.apache.hadoop.io.IntWritable;
@@ -14,6 +15,9 @@ import java.util.Calendar;
  * @author ruifeng.shan
  * @date 15-8-31
  */
+@Description(name = "day_of_week"
+        , value = "_FUNC_(date) - day of week. if monday, return 1, tuesday return 2 ... sunday return 7."
+        , extended = "Example:\n > select _FUNC_(date_string) from src;\n > select _FUNC_(date) from src;")
 public class UDFDayOfWeek extends UDF {
     public final static DateTimeFormatter DEFAULT_DATE_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
 
