@@ -34,4 +34,32 @@ public class ArrayUtils {
             }
         };
     }
+
+    public static boolean arrayEquals(Object left, Object right, ListObjectInspector arrayOI) {
+        if (left == null || right == null) {
+            if (left == null && right == null) {
+                return true;
+            }
+            return false;
+        }
+
+        int leftArrayLength = arrayOI.getListLength(left);
+        int rightArrayLength = arrayOI.getListLength(right);
+
+        if (leftArrayLength != rightArrayLength) {
+            return false;
+        }
+
+        ObjectInspector arrayElementOI = arrayOI.getListElementObjectInspector();
+        for (int i = 0; i < leftArrayLength; i++) {
+            Object leftArrayElement = arrayOI.getListElement(left, i);
+            Object rightArrayElement = arrayOI.getListElement(right, i);
+            int compareValue = ObjectInspectorUtils.compare(leftArrayElement, arrayElementOI, rightArrayElement, arrayElementOI);
+            if (compareValue != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

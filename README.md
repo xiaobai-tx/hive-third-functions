@@ -35,7 +35,7 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 You can also directly download file from [release page](https://github.com/aaronshan/hive-third-functions/releases).
 
-> current latest version is `2.2.0`
+> current latest version is `2.2.1`
 
 ## Functions
 
@@ -52,6 +52,7 @@ You can also directly download file from [release page](https://github.com/aaron
 | function| description |
 |:--|:--|
 |array_contains(array&lt;E&gt;, E) -> boolean | whether array contains value or not.|
+|array_equals(array&lt;E&gt;, array&lt;E&gt;) -> boolean | whether two array equals or not.|
 |array_intersect(array, array) -> array | returns the two array's intersection, without duplicates.|
 |array_max(array&lt;E&gt;) -> E | returns the maximum value of input array.|
 |array_min(array&lt;E&gt;) -> E | returns the minimum value of input array.|
@@ -146,6 +147,7 @@ Put these statements into `${HOME}/.hiverc` or exec its on hive cli env.
 ```
 add jar ${jar_location_dir}/hive-third-functions-${version}-shaded.jar
 create temporary function array_contains as 'cc.shanruifeng.functions.array.UDFArrayContains';
+create temporary function array_equals as 'cc.shanruifeng.functions.array.UDFArrayEquals';
 create temporary function array_intersect as 'cc.shanruifeng.functions.array.UDFArrayIntersect';
 create temporary function array_max as 'cc.shanruifeng.functions.array.UDFArrayMax';
 create temporary function array_min as 'cc.shanruifeng.functions.array.UDFArrayMin';
@@ -236,6 +238,7 @@ select zodiac_en('1989-01-08') => Capricorn
 
 ```
 select array_contains(array(16,12,18,9), 12) => true
+select array_equals(array(16,12,18,9), array(16,12,18,9)) => true
 select array_intersect(array(16,12,18,9,null), array(14,9,6,18,null)) => [null,9,18]
 select array_max(array(16,13,12,13,18,16,9,18)) => 18
 select array_min(array(16,12,18,9)) => 9
