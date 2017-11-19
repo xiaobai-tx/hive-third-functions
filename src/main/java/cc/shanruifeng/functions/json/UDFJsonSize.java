@@ -30,8 +30,7 @@ public class UDFJsonSize extends UDF{
             result.set(size);
             return result;
         } catch (Exception e) {
-            e.printStackTrace();
-            return new LongWritable(-1234L);
+            return null;
         }
     }
 }

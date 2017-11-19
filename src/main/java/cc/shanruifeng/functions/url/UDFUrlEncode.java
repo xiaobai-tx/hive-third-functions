@@ -22,6 +22,9 @@ public class UDFUrlEncode extends UDF {
     private Text result = new Text();
 
     public Text evaluate(String value) {
+        if (value == null) {
+            return null;
+        }
         Escaper escaper = UrlEscapers.urlFormParameterEscaper();
         result.set(escaper.escape(value));
         return result;

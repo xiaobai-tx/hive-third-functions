@@ -20,6 +20,9 @@ public class UDFChinaIdCardGender extends UDF {
     }
 
     public Text evaluate(Text idCard) {
+        if (idCard == null) {
+            return null;
+        }
         result.set(CardUtils.getIdCardGender(idCard.toString()));
         return result;
     }

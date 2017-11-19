@@ -24,6 +24,9 @@ public class UDFZodiacSignCn extends UDF {
     }
 
     public Text evaluate(Text birthday) {
+        if (birthday == null) {
+            return null;
+        }
         DateTime dateTime = null;
         try {
             dateTime = DateTime.parse(birthday.toString(), DEFAULT_DATE_FORMATTER);
@@ -35,11 +38,17 @@ public class UDFZodiacSignCn extends UDF {
     }
 
     public Text evaluate(Date birthday) {
+        if (birthday == null) {
+            return null;
+        }
         DateTime dateTime = new DateTime(birthday);
         return evaluate(new IntWritable(dateTime.getMonthOfYear()), new IntWritable(dateTime.getDayOfMonth()));
     }
 
     public Text evaluate(IntWritable month, IntWritable day) {
+        if (month == null || day == null) {
+            return null;
+        }
         result.set(getZodiac(month.get(), day.get()));
         return result;
     }

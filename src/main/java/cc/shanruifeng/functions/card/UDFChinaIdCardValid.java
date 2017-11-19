@@ -21,6 +21,9 @@ public class UDFChinaIdCardValid extends UDF {
     }
 
     public BooleanWritable evaluate(Text idCard) {
+        if (idCard == null) {
+            return null;
+        }
         result.set(CardUtils.isValidIdCard(idCard.toString()));
         return result;
     }

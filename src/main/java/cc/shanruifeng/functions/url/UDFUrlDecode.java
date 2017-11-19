@@ -18,6 +18,9 @@ public class UDFUrlDecode extends UDF {
     private Text result = new Text();
 
     public Text evaluate(String value) {
+        if (value == null) {
+            return null;
+        }
         try {
             result.set(URLDecoder.decode(value, "UTF-8"));
             return result;

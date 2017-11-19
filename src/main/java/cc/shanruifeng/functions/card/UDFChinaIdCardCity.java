@@ -20,6 +20,9 @@ public class UDFChinaIdCardCity extends UDF {
     }
 
     public Text evaluate(Text idCard) {
+        if (idCard == null) {
+            return null;
+        }
         result.set(CardUtils.getIdCardCity(idCard.toString()));
         return result;
     }
