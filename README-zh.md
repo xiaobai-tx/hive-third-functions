@@ -5,7 +5,7 @@
 [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://github.com/aaronshan/hive-third-functions/tree/master/README-zh.md)
 [![Release](https://img.shields.io/github/release/aaronshan/hive-third-functions.svg)](https://github.com/aaronshan/hive-third-functions/releases)
 
-## Introduction
+## 简介
 
 hive-third-functions 包含了一些很有用的hive udf函数，特别是数组和json函数.
 
