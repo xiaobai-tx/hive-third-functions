@@ -40,7 +40,7 @@ mvn clean package -DskipTests
 
 你也可以直接在发布页下载打包好了最新版本 [发布页](https://github.com/aaronshan/hive-third-functions/releases).
 
-> 当前最新的版本是 `2.1.2`
+> 当前最新的版本是 `2.1.3`
 
 ## 函数
 

@@ -2,6 +2,8 @@ package cc.shanruifeng.functions.array;
 
 import cc.shanruifeng.functions.fastuitl.ints.IntArrays;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
@@ -139,24 +141,27 @@ public class UDFArrayIntersect extends GenericUDF {
             } else if (compareValue < 0) {
                 leftCurrentPosition++;
             } else {
-                result.add(converter.convert(leftArrayElement));
+                result.add(converter.convert(leftArrayOI.getListElement(leftArray, leftPositions[leftCurrentPosition])));
                 leftCurrentPosition++;
                 rightCurrentPosition++;
 
-                Object leftArrayElementTmp1 = leftArrayOI.getListElement(leftArray, leftPositions[leftBasePosition]);
-                Object leftArrayElementTmp2 = leftArrayOI.getListElement(leftArray, leftPositions[leftCurrentPosition]);
-                Object rightArrayElementTmp1 = rightArrayOI.getListElement(rightArray, rightPositions[rightBasePosition]);
-                Object rightArrayElementTmp2 = rightArrayOI.getListElement(rightArray, rightPositions[rightCurrentPosition]);
-                while (leftCurrentPosition < leftArrayLength && ObjectInspectorUtils.compare(leftArrayElementTmp1, leftArrayElementOI, leftArrayElementTmp2, leftArrayElementOI) == 0) {
+                while (leftCurrentPosition < leftArrayLength && compare(leftArrayOI, leftArray, leftBasePosition, leftCurrentPosition) == 0) {
                     leftCurrentPosition++;
                 }
-                while (rightCurrentPosition < rightArrayLength && ObjectInspectorUtils.compare(rightArrayElementTmp1, rightArrayElementOI, rightArrayElementTmp2, rightArrayElementOI) == 0) {
+                while (rightCurrentPosition < rightArrayLength && compare(rightArrayOI, rightArray, rightBasePosition, rightCurrentPosition) == 0) {
                     rightCurrentPosition++;
                 }
             }
         }
 
         return result;
+    }
+
+    private int compare(ListObjectInspector arrayOI, Object array, int position1, int position2) {
+        ObjectInspector arrayElementOI = arrayOI.getListElementObjectInspector();
+        Object arrayElementTmp1 = arrayOI.getListElement(array, leftPositions[position1]);
+        Object arrayElementTmp2 = arrayOI.getListElement(array, leftPositions[position2]);
+        return ObjectInspectorUtils.compare(arrayElementTmp1, arrayElementOI, arrayElementTmp2, arrayElementOI);
     }
 
     @Override
