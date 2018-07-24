@@ -145,6 +145,20 @@ mvn clean package -DskipTests
 |url_encode(value) -> string | escapes value by encoding it so that it can be safely included in URL query parameter names and values|
 |url_decode(value) -> string | unescape the URL encoded value. This function is the inverse of `url_encode`. | 
 
+### 10. 数学函数
+
+| function| description |
+|:--|:--|
+|infinity() -> double | 获取正无穷常数|
+|is_finite(x) -> boolean | 判断x是否为有限数值|
+|is_infinite(x) -> boolean |判断x是否为无穷数值|
+|is_nan(x) -> boolean | 判断x是否不是一个数值类型的变量|
+|nan() -> double | 获取一个表示NAN（not-a-number）的常数 |
+|from_base(string, radix) -> bigint | 获取字面量的值，该值的基数为radix|
+|to_base(x, radix) -> varchar | 返回x以radix为基数的字面量|
+|cosine_similarity(x, y) -> double | 返回两个稀疏向量的余弦相似度|
+
+
 ## 用法
 
 将下面这些内容写入 `${HOME}/.hiverc` 文件, 或者也可以按需在hive命令行环境中执行.
@@ -205,6 +219,14 @@ create temporary function gcj_to_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjT
 create temporary function gcj_extract_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjExtractWgs';
 create temporary function url_encode as 'cc.shanruifeng.functions.url.UDFUrlEncode';
 create temporary function url_decode as 'cc.shanruifeng.functions.url.UDFUrlDecode';
+create temporary function infinity as 'cc.shanruifeng.functions.math.UDFMathInfinity';
+create temporary function is_finite as 'cc.shanruifeng.functions.math.UDFMathIsFinite';
+create temporary function is_infinite as 'cc.shanruifeng.functions.math.UDFMathIsInfinite';
+create temporary function is_nan as 'cc.shanruifeng.functions.math.UDFMathIsNaN';
+create temporary function nan as 'cc.shanruifeng.functions.math.UDFMathIsNaN';
+create temporary function from_base as 'cc.shanruifeng.functions.math.UDFMathFromBase';
+create temporary function to_base as 'cc.shanruifeng.functions.math.UDFMathToBase';
+create temporary function cosine_similarity as 'cc.shanruifeng.functions.math.UDFMathCosineSimilarity';
 ```
 
 你可以在hive的命令杭中使用下面的语句来查看函数的细节.
@@ -301,4 +323,8 @@ select gcj_extract_wgs(39.915, 116.404) => {"lng":116.39775549316407,"lat":39.91
 
 ```
 select url_encode('http://shanruifeng.cc/') => http%3A%2F%2Fshanruifeng.cc%2F
+```
+
+```
+SELECT cosine_similarity(map_build(array['a'], array[1.0]), map_build(array['a'], array[2.0])); => 1.0
 ```

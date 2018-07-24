@@ -145,6 +145,19 @@ You can also directly download file from [release page](https://github.com/aaron
 |url_encode(value) -> string | escapes value by encoding it so that it can be safely included in URL query parameter names and values|
 |url_decode(value) -> string | unescape the URL encoded value. This function is the inverse of `url_encode`. | 
 
+### 10. math functions
+
+| function| description |
+|:--|:--|
+|infinity() -> double | Returns the constant representing positive infinity.|
+|is_finite(x) -> boolean | Determine if x is finite.|
+|is_infinite(x) -> boolean |Determine if x is infinite.|
+|is_nan(x) -> boolean | Determine if x is not-a-number.|
+|nan() -> double | Returns the constant representing not-a-number. |
+|from_base(string, radix) -> bigint | Returns the value of string interpreted as a base-radix number.|
+|to_base(x, radix) -> varchar | Returns the base-radix representation of x.|
+|cosine_similarity(x, y) -> double | Returns the cosine similarity between the sparse vectors x and y|
+
 ## Use
 
 Put these statements into `${HOME}/.hiverc` or exec its on hive cli env.
@@ -204,7 +217,14 @@ create temporary function wgs_to_gcj as 'cc.shanruifeng.functions.geo.UDFGeoWgsT
 create temporary function gcj_to_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjToWgs';
 create temporary function gcj_extract_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjExtractWgs';
 create temporary function url_encode as 'cc.shanruifeng.functions.url.UDFUrlEncode';
-create temporary function url_decode as 'cc.shanruifeng.functions.url.UDFUrlDecode';
+create temporary function infinity as 'cc.shanruifeng.functions.math.UDFMathInfinity';
+create temporary function is_finite as 'cc.shanruifeng.functions.math.UDFMathIsFinite';
+create temporary function is_infinite as 'cc.shanruifeng.functions.math.UDFMathIsInfinite';
+create temporary function is_nan as 'cc.shanruifeng.functions.math.UDFMathIsNaN';
+create temporary function nan as 'cc.shanruifeng.functions.math.UDFMathIsNaN';
+create temporary function from_base as 'cc.shanruifeng.functions.math.UDFMathFromBase';
+create temporary function to_base as 'cc.shanruifeng.functions.math.UDFMathToBase';
+create temporary function cosine_similarity as 'cc.shanruifeng.functions.math.UDFMathCosineSimilarity';
 ```
 
 You can use these statements on hive cli env get detail of function.
@@ -301,4 +321,8 @@ select gcj_extract_wgs(39.915, 116.404) => {"lng":116.39775549316407,"lat":39.91
 
 ```
 select url_encode('http://shanruifeng.cc/') => http%3A%2F%2Fshanruifeng.cc%2F
+```
+
+```
+SELECT cosine_similarity(map_build(array['a'], array[1.0]), map_build(array['a'], array[2.0])); => 1.0
 ```
