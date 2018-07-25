@@ -10,7 +10,8 @@
 hive-third-functions 包含了一些很有用的hive udf函数，特别是数组和json函数.
 
 > 注意:
-> hive-third-functions支持hive-0.11.0或更高版本.
+> 1. hive-third-functions支持hive-0.11.0或更高版本.
+> 2. 运行`3.0.0`及以上版本需要Java8及以上
 
 ## 编译
 
@@ -40,7 +41,7 @@ mvn clean package -DskipTests
 
 你也可以直接在发布页下载打包好了最新版本 [发布页](https://github.com/aaronshan/hive-third-functions/releases).
 
-> 当前最新的版本是 `2.1.3`
+> 当前最新的版本是 `3.0.0`
 
 ## 函数
 
@@ -71,6 +72,7 @@ mvn clean package -DskipTests
 |array_value_count(array&lt;E&gt;, E) -> long | 统计数组中包含给定元素的个数.|
 |array_slice(array, start, length) -> array | 对数组进行分片操作，start为正数从前开始分片, start为负数从后开始分片, 长度为指定的长度.|
 |array_element_at(array&lt;E&gt;, index) -> E | 返回指定位置的数组元素. 如果索引位置 < 0, 则从尾部开始计数并返回.|
+|array_filter(array&lt;E&gt;, function<E, boolean>)) -> E | 根据一个返回值为boolean类型的lambda表达式函数来对数组元素进行过滤.|
 
 ### 3. map函数
 | 函数| 描述 |
@@ -180,6 +182,7 @@ create temporary function array_concat as 'cc.shanruifeng.functions.array.UDFArr
 create temporary function array_value_count as 'cc.shanruifeng.functions.array.UDFArrayValueCount';
 create temporary function array_slice as 'cc.shanruifeng.functions.array.UDFArraySlice';
 create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayElementAt';
+create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayFilter';
 create temporary function bit_count as 'cc.shanruifeng.functions.bitwise.UDFBitCount';
 create temporary function bitwise_and as 'cc.shanruifeng.functions.bitwise.UDFBitwiseAnd';
 create temporary function bitwise_not as 'cc.shanruifeng.functions.bitwise.UDFBitwiseNot';
@@ -279,6 +282,10 @@ select array_concat(array(16,12,18,9,null), array(14,9,6,18,null)) => [16,12,18,
 select array_value_count(array(16,13,12,13,18,16,9,18), 13) => 2
 select array_slice(array(16,13,12,13,18,16,9,18), -2, 3) => [9,18]
 select array_element_at(array(16,13,12,13,18,16,9,18), -1) => 18
+select array_filter(array(16,13), 'x -> x > 15') => [16]
+select array_filter(array('a','b'), 'x -> x == \'a\'') => [a]
+select array_filter(array(true, false, NULL), 'x -> x != null && x') => [true]
+select array_filter(array(array('abc', null, '123'), array ('def', 'x', '456')), 'x -> x.get(1) == null') => [['abc', null, '123']]
 ```
 
 ```
@@ -326,5 +333,5 @@ select url_encode('http://shanruifeng.cc/') => http%3A%2F%2Fshanruifeng.cc%2F
 ```
 
 ```
-SELECT cosine_similarity(map_build(array['a'], array[1.0]), map_build(array['a'], array[2.0])); => 1.0
+select cosine_similarity(map_build(array['a'], array[1.0]), map_build(array['a'], array[2.0])); => 1.0
 ```
