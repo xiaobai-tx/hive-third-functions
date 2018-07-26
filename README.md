@@ -41,7 +41,7 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 You can also directly download file from [release page](https://github.com/aaronshan/hive-third-functions/releases).
 
-> current latest version is `2.1.3`
+> current latest version is `3.0.0`
 
 ## Functions
 
