@@ -74,6 +74,9 @@ You can also directly download file from [release page](https://github.com/aaron
 |array_element_at(array&lt;E&gt;, index) -> E | returns element of array at given index. If index < 0, element_at accesses elements from the last to the first.|
 |array_filter(array&lt;E&gt;, function<E, boolean>)) -> E | constructs an array from those elements of array for which function returns true.|
 |array_shuffle(array) -> array | Generate a random permutation of the given array x.|
+|sequence(start, end) -> array<Long> | Generate a sequence of integers from start to stop.|
+|sequence(start, end, step) -> array<Long> | Generate a sequence of integers from start to stop, incrementing by step.|
+|sequence(start_date_string, end_data_string, step) -> array<String> | Generate a sequence of date string from start to stop, incrementing by step.|
 
 ### 3. map functions
 | function| description |
@@ -184,6 +187,7 @@ create temporary function array_slice as 'cc.shanruifeng.functions.array.UDFArra
 create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayElementAt';
 create temporary function array_filter as 'cc.shanruifeng.functions.array.UDFArrayFilter';
 create temporary function array_shuffle as 'cc.shanruifeng.functions.array.UDFArrayShuffle';
+create temporary function sequence as 'cc.shanruifeng.functions.array.UDFSequence';
 create temporary function bit_count as 'cc.shanruifeng.functions.bitwise.UDFBitCount';
 create temporary function bitwise_and as 'cc.shanruifeng.functions.bitwise.UDFBitwiseAnd';
 create temporary function bitwise_not as 'cc.shanruifeng.functions.bitwise.UDFBitwiseNot';
@@ -287,6 +291,10 @@ select array_filter(array('a','b'), 'x -> x == \'a\'') => [a]
 select array_filter(array(true, false, NULL), 'x -> x != null && x') => [true]
 select array_filter(array(array('abc', null, '123'), array ('def', 'x', '456')), 'x -> x.get(1) == null') => [['abc', null, '123']]
 select array_shuffle(array(16,12,18,9))
+select sequence(1, 5) => [1, 2, 3, 4, 5]
+select sequence(5, 1) => [5, 4, 3, 2, 1]
+select sequence(1, 9, 4) => [1, 5, 9]
+select sequence('2016-04-12 00:00:00', '2016-04-14 00:00:00', 24*3600*1000) => ['2016-04-12 00:00:00', '2016-04-13 00:00:00', '2016-04-14 00:00:00']
 ```
 
 ```
