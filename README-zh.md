@@ -73,6 +73,7 @@ mvn clean package -DskipTests
 |array_slice(array, start, length) -> array | 对数组进行分片操作，start为正数从前开始分片, start为负数从后开始分片, 长度为指定的长度.|
 |array_element_at(array&lt;E&gt;, index) -> E | 返回指定位置的数组元素. 如果索引位置 < 0, 则从尾部开始计数并返回.|
 |array_filter(array&lt;E&gt;, function<E, boolean>)) -> E | 根据一个返回值为boolean类型的lambda表达式函数来对数组元素进行过滤.|
+|array_shuffle(array) -> array | 对数组shuffle.|
 
 ### 3. map函数
 | 函数| 描述 |
@@ -182,7 +183,8 @@ create temporary function array_concat as 'cc.shanruifeng.functions.array.UDFArr
 create temporary function array_value_count as 'cc.shanruifeng.functions.array.UDFArrayValueCount';
 create temporary function array_slice as 'cc.shanruifeng.functions.array.UDFArraySlice';
 create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayElementAt';
-create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayFilter';
+create temporary function array_filter as 'cc.shanruifeng.functions.array.UDFArrayFilter';
+create temporary function array_shuffle as 'cc.shanruifeng.functions.array.UDFArrayShuffle';
 create temporary function bit_count as 'cc.shanruifeng.functions.bitwise.UDFBitCount';
 create temporary function bitwise_and as 'cc.shanruifeng.functions.bitwise.UDFBitwiseAnd';
 create temporary function bitwise_not as 'cc.shanruifeng.functions.bitwise.UDFBitwiseNot';
@@ -286,6 +288,7 @@ select array_filter(array(16,13), 'x -> x > 15') => [16]
 select array_filter(array('a','b'), 'x -> x == \'a\'') => [a]
 select array_filter(array(true, false, NULL), 'x -> x != null && x') => [true]
 select array_filter(array(array('abc', null, '123'), array ('def', 'x', '456')), 'x -> x.get(1) == null') => [['abc', null, '123']]
+select array_shuffle(array(16,12,18,9))
 ```
 
 ```
