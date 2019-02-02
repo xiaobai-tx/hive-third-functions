@@ -10,7 +10,8 @@
 hive-third-functions 包含了一些很有用的hive udf函数，特别是数组和json函数.
 
 > 注意:
-> hive-third-functions支持hive-0.11.0或更高版本.
+> 1. hive-third-functions支持hive-0.11.0或更高版本.
+> 2. 运行`3.0.0`及以上版本需要Java8及以上
 
 ## 编译
 
@@ -40,7 +41,7 @@ mvn clean package -DskipTests
 
 你也可以直接在发布页下载打包好了最新版本 [发布页](https://github.com/aaronshan/hive-third-functions/releases).
 
-> 当前最新的版本是 `2.1.3`
+> 当前最新的版本是 `3.0.0`
 
 ## 函数
 
@@ -71,6 +72,10 @@ mvn clean package -DskipTests
 |array_value_count(array&lt;E&gt;, E) -> long | 统计数组中包含给定元素的个数.|
 |array_slice(array, start, length) -> array | 对数组进行分片操作，start为正数从前开始分片, start为负数从后开始分片, 长度为指定的长度.|
 |array_element_at(array&lt;E&gt;, index) -> E | 返回指定位置的数组元素. 如果索引位置 < 0, 则从尾部开始计数并返回.|
+|array_shuffle(array) -> array | 对数组shuffle.|
+|sequence(start, end) -> array<Long> | 生成数组序列.|
+|sequence(start, end, step) -> array<Long> | 生成数组序列.|
+|sequence(start_date_string, end_data_string, step) -> array<String> | 生成日期数组序列.|
 
 ### 3. map函数
 | 函数| 描述 |
@@ -145,66 +150,90 @@ mvn clean package -DskipTests
 |url_encode(value) -> string | escapes value by encoding it so that it can be safely included in URL query parameter names and values|
 |url_decode(value) -> string | unescape the URL encoded value. This function is the inverse of `url_encode`. | 
 
+### 10. 数学函数
+
+| function| description |
+|:--|:--|
+|infinity() -> double | 获取正无穷常数|
+|is_finite(x) -> boolean | 判断x是否为有限数值|
+|is_infinite(x) -> boolean |判断x是否为无穷数值|
+|is_nan(x) -> boolean | 判断x是否不是一个数值类型的变量|
+|nan() -> double | 获取一个表示NAN（not-a-number）的常数 |
+|from_base(string, radix) -> bigint | 获取字面量的值，该值的基数为radix|
+|to_base(x, radix) -> varchar | 返回x以radix为基数的字面量|
+|cosine_similarity(x, y) -> double | 返回两个稀疏向量的余弦相似度|
+
+
 ## 用法
 
 将下面这些内容写入 `${HOME}/.hiverc` 文件, 或者也可以按需在hive命令行环境中执行.
 
 ```
 add jar ${jar_location_dir}/hive-third-functions-${version}-shaded.jar
-create temporary function array_contains as 'cc.shanruifeng.functions.array.UDFArrayContains';
-create temporary function array_equals as 'cc.shanruifeng.functions.array.UDFArrayEquals';
-create temporary function array_intersect as 'cc.shanruifeng.functions.array.UDFArrayIntersect';
-create temporary function array_max as 'cc.shanruifeng.functions.array.UDFArrayMax';
-create temporary function array_min as 'cc.shanruifeng.functions.array.UDFArrayMin';
-create temporary function array_join as 'cc.shanruifeng.functions.array.UDFArrayJoin';
-create temporary function array_distinct as 'cc.shanruifeng.functions.array.UDFArrayDistinct';
-create temporary function array_position as 'cc.shanruifeng.functions.array.UDFArrayPosition';
-create temporary function array_remove as 'cc.shanruifeng.functions.array.UDFArrayRemove';
-create temporary function array_reverse as 'cc.shanruifeng.functions.array.UDFArrayReverse';
-create temporary function array_sort as 'cc.shanruifeng.functions.array.UDFArraySort';
-create temporary function array_concat as 'cc.shanruifeng.functions.array.UDFArrayConcat';
-create temporary function array_value_count as 'cc.shanruifeng.functions.array.UDFArrayValueCount';
-create temporary function array_slice as 'cc.shanruifeng.functions.array.UDFArraySlice';
-create temporary function array_element_at as 'cc.shanruifeng.functions.array.UDFArrayElementAt';
-create temporary function bit_count as 'cc.shanruifeng.functions.bitwise.UDFBitCount';
-create temporary function bitwise_and as 'cc.shanruifeng.functions.bitwise.UDFBitwiseAnd';
-create temporary function bitwise_not as 'cc.shanruifeng.functions.bitwise.UDFBitwiseNot';
-create temporary function bitwise_or as 'cc.shanruifeng.functions.bitwise.UDFBitwiseOr';
-create temporary function bitwise_xor as 'cc.shanruifeng.functions.bitwise.UDFBitwiseXor';
-create temporary function map_build as 'cc.shanruifeng.functions.map.UDFMapBuild';
-create temporary function map_concat as 'cc.shanruifeng.functions.map.UDFMapConcat';
-create temporary function map_element_at as 'cc.shanruifeng.functions.map.UDFMapElementAt';
-create temporary function map_equals as 'cc.shanruifeng.functions.map.UDFMapEquals';
-create temporary function day_of_week as 'cc.shanruifeng.functions.date.UDFDayOfWeek';
-create temporary function day_of_year as 'cc.shanruifeng.functions.date.UDFDayOfYear';
-create temporary function type_of_day as 'cc.shanruifeng.functions.date.UDFTypeOfDay'; 
-create temporary function zodiac_cn as 'cc.shanruifeng.functions.date.UDFZodiacSignCn';
-create temporary function zodiac_en as 'cc.shanruifeng.functions.date.UDFZodiacSignEn';
-create temporary function pinyin as 'cc.shanruifeng.functions.string.UDFChineseToPinYin';
-create temporary function md5 as 'cc.shanruifeng.functions.string.UDFMd5';
-create temporary function sha256 as 'cc.shanruifeng.functions.string.UDFSha256';
-create temporary function json_array_get as 'cc.shanruifeng.functions.json.UDFJsonArrayGet';
-create temporary function json_array_length as 'cc.shanruifeng.functions.json.UDFJsonArrayLength';
-create temporary function json_array_extract as 'cc.shanruifeng.functions.json.UDFJsonArrayExtract';
-create temporary function json_array_extract_scalar as 'cc.shanruifeng.functions.json.UDFJsonArrayExtractScalar';
-create temporary function json_extract as 'cc.shanruifeng.functions.json.UDFJsonExtract';
-create temporary function json_extract_scalar as 'cc.shanruifeng.functions.json.UDFJsonExtractScalar';
-create temporary function json_size as 'cc.shanruifeng.functions.json.UDFJsonSize';
-create temporary function id_card_province as 'cc.shanruifeng.functions.card.UDFChinaIdCardProvince';
-create temporary function id_card_city as 'cc.shanruifeng.functions.card.UDFChinaIdCardCity';
-create temporary function id_card_area as 'cc.shanruifeng.functions.card.UDFChinaIdCardArea';
-create temporary function id_card_birthday as 'cc.shanruifeng.functions.card.UDFChinaIdCardBirthday';
-create temporary function id_card_gender as 'cc.shanruifeng.functions.card.UDFChinaIdCardGender';
-create temporary function is_valid_id_card as 'cc.shanruifeng.functions.card.UDFChinaIdCardValid';
-create temporary function id_card_info as 'cc.shanruifeng.functions.card.UDFChinaIdCardInfo';
-create temporary function wgs_distance as 'cc.shanruifeng.functions.geo.UDFGeoWgsDistance';
-create temporary function gcj_to_bd as 'cc.shanruifeng.functions.geo.UDFGeoGcjToBd';
-create temporary function bd_to_gcj as 'cc.shanruifeng.functions.geo.UDFGeoBdToGcj';
-create temporary function wgs_to_gcj as 'cc.shanruifeng.functions.geo.UDFGeoWgsToGcj';
-create temporary function gcj_to_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjToWgs';
-create temporary function gcj_extract_wgs as 'cc.shanruifeng.functions.geo.UDFGeoGcjExtractWgs';
-create temporary function url_encode as 'cc.shanruifeng.functions.url.UDFUrlEncode';
-create temporary function url_decode as 'cc.shanruifeng.functions.url.UDFUrlDecode';
+create temporary function array_contains as 'com.github.aaronshan.functions.array.UDFArrayContains';
+create temporary function array_equals as 'com.github.aaronshan.functions.array.UDFArrayEquals';
+create temporary function array_intersect as 'com.github.aaronshan.functions.array.UDFArrayIntersect';
+create temporary function array_max as 'com.github.aaronshan.functions.array.UDFArrayMax';
+create temporary function array_min as 'com.github.aaronshan.functions.array.UDFArrayMin';
+create temporary function array_join as 'com.github.aaronshan.functions.array.UDFArrayJoin';
+create temporary function array_distinct as 'com.github.aaronshan.functions.array.UDFArrayDistinct';
+create temporary function array_position as 'com.github.aaronshan.functions.array.UDFArrayPosition';
+create temporary function array_remove as 'com.github.aaronshan.functions.array.UDFArrayRemove';
+create temporary function array_reverse as 'com.github.aaronshan.functions.array.UDFArrayReverse';
+create temporary function array_sort as 'com.github.aaronshan.functions.array.UDFArraySort';
+create temporary function array_concat as 'com.github.aaronshan.functions.array.UDFArrayConcat';
+create temporary function array_value_count as 'com.github.aaronshan.functions.array.UDFArrayValueCount';
+create temporary function array_slice as 'com.github.aaronshan.functions.array.UDFArraySlice';
+create temporary function array_element_at as 'com.github.aaronshan.functions.array.UDFArrayElementAt';
+create temporary function bit_count as 'com.github.aaronshan.functions.bitwise.UDFBitCount';
+create temporary function bitwise_and as 'com.github.aaronshan.functions.bitwise.UDFBitwiseAnd';
+create temporary function array_shuffle as 'com.github.aaronshan.functions.array.UDFArrayShuffle';
+create temporary function sequence as 'com.github.aaronshan.functions.array.UDFSequence';
+create temporary function bitwise_not as 'com.github.aaronshan.functions.bitwise.UDFBitwiseNot';
+create temporary function bitwise_or as 'com.github.aaronshan.functions.bitwise.UDFBitwiseOr';
+create temporary function bitwise_xor as 'com.github.aaronshan.functions.bitwise.UDFBitwiseXor';
+create temporary function map_build as 'com.github.aaronshan.functions.map.UDFMapBuild';
+create temporary function map_concat as 'com.github.aaronshan.functions.map.UDFMapConcat';
+create temporary function map_element_at as 'com.github.aaronshan.functions.map.UDFMapElementAt';
+create temporary function map_equals as 'com.github.aaronshan.functions.map.UDFMapEquals';
+create temporary function day_of_week as 'com.github.aaronshan.functions.date.UDFDayOfWeek';
+create temporary function day_of_year as 'com.github.aaronshan.functions.date.UDFDayOfYear';
+create temporary function type_of_day as 'com.github.aaronshan.functions.date.UDFTypeOfDay'; 
+create temporary function zodiac_cn as 'com.github.aaronshan.functions.date.UDFZodiacSignCn';
+create temporary function zodiac_en as 'com.github.aaronshan.functions.date.UDFZodiacSignEn';
+create temporary function pinyin as 'com.github.aaronshan.functions.string.UDFChineseToPinYin';
+create temporary function md5 as 'com.github.aaronshan.functions.string.UDFMd5';
+create temporary function sha256 as 'com.github.aaronshan.functions.string.UDFSha256';
+create temporary function json_array_get as 'com.github.aaronshan.functions.json.UDFJsonArrayGet';
+create temporary function json_array_length as 'com.github.aaronshan.functions.json.UDFJsonArrayLength';
+create temporary function json_array_extract as 'com.github.aaronshan.functions.json.UDFJsonArrayExtract';
+create temporary function json_array_extract_scalar as 'com.github.aaronshan.functions.json.UDFJsonArrayExtractScalar';
+create temporary function json_extract as 'com.github.aaronshan.functions.json.UDFJsonExtract';
+create temporary function json_extract_scalar as 'com.github.aaronshan.functions.json.UDFJsonExtractScalar';
+create temporary function json_size as 'com.github.aaronshan.functions.json.UDFJsonSize';
+create temporary function id_card_province as 'com.github.aaronshan.functions.card.UDFChinaIdCardProvince';
+create temporary function id_card_city as 'com.github.aaronshan.functions.card.UDFChinaIdCardCity';
+create temporary function id_card_area as 'com.github.aaronshan.functions.card.UDFChinaIdCardArea';
+create temporary function id_card_birthday as 'com.github.aaronshan.functions.card.UDFChinaIdCardBirthday';
+create temporary function id_card_gender as 'com.github.aaronshan.functions.card.UDFChinaIdCardGender';
+create temporary function is_valid_id_card as 'com.github.aaronshan.functions.card.UDFChinaIdCardValid';
+create temporary function id_card_info as 'com.github.aaronshan.functions.card.UDFChinaIdCardInfo';
+create temporary function wgs_distance as 'com.github.aaronshan.functions.geo.UDFGeoWgsDistance';
+create temporary function gcj_to_bd as 'com.github.aaronshan.functions.geo.UDFGeoGcjToBd';
+create temporary function bd_to_gcj as 'com.github.aaronshan.functions.geo.UDFGeoBdToGcj';
+create temporary function wgs_to_gcj as 'com.github.aaronshan.functions.geo.UDFGeoWgsToGcj';
+create temporary function gcj_to_wgs as 'com.github.aaronshan.functions.geo.UDFGeoGcjToWgs';
+create temporary function gcj_extract_wgs as 'com.github.aaronshan.functions.geo.UDFGeoGcjExtractWgs';
+create temporary function url_encode as 'com.github.aaronshan.functions.url.UDFUrlEncode';
+create temporary function url_decode as 'com.github.aaronshan.functions.url.UDFUrlDecode';
+create temporary function infinity as 'com.github.aaronshan.functions.math.UDFMathInfinity';
+create temporary function is_finite as 'com.github.aaronshan.functions.math.UDFMathIsFinite';
+create temporary function is_infinite as 'com.github.aaronshan.functions.math.UDFMathIsInfinite';
+create temporary function is_nan as 'com.github.aaronshan.functions.math.UDFMathIsNaN';
+create temporary function nan as 'com.github.aaronshan.functions.math.UDFMathIsNaN';
+create temporary function from_base as 'com.github.aaronshan.functions.math.UDFMathFromBase';
+create temporary function to_base as 'com.github.aaronshan.functions.math.UDFMathToBase';
+create temporary function cosine_similarity as 'com.github.aaronshan.functions.math.UDFMathCosineSimilarity';
 ```
 
 你可以在hive的命令杭中使用下面的语句来查看函数的细节.
@@ -257,6 +286,11 @@ select array_concat(array(16,12,18,9,null), array(14,9,6,18,null)) => [16,12,18,
 select array_value_count(array(16,13,12,13,18,16,9,18), 13) => 2
 select array_slice(array(16,13,12,13,18,16,9,18), -2, 3) => [9,18]
 select array_element_at(array(16,13,12,13,18,16,9,18), -1) => 18
+select array_shuffle(array(16,12,18,9))
+select sequence(1, 5) => [1, 2, 3, 4, 5]
+select sequence(5, 1) => [5, 4, 3, 2, 1]
+select sequence(1, 9, 4) => [1, 5, 9]
+select sequence('2016-04-12 00:00:00', '2016-04-14 00:00:00', 24*3600*1000) => ['2016-04-12 00:00:00', '2016-04-13 00:00:00', '2016-04-14 00:00:00']
 ```
 
 ```
@@ -301,4 +335,8 @@ select gcj_extract_wgs(39.915, 116.404) => {"lng":116.39775549316407,"lat":39.91
 
 ```
 select url_encode('http://shanruifeng.cc/') => http%3A%2F%2Fshanruifeng.cc%2F
+```
+
+```
+select cosine_similarity(map_build(array['a'], array[1.0]), map_build(array['a'], array[2.0])); => 1.0
 ```
