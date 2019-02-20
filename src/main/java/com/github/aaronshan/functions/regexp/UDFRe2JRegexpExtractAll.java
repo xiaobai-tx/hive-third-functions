@@ -33,7 +33,7 @@ public class UDFRe2JRegexpExtractAll extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException {
         // Check if two arguments were passed
-        if (arguments.length != 2 || arguments.length != 3) {
+        if (arguments.length != 2 && arguments.length != 3) {
             throw new UDFArgumentLengthException(
                     "The function regexp_extract_all takes exactly 2 or 3 arguments.");
         }

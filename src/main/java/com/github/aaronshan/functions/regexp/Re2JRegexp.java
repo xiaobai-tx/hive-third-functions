@@ -106,7 +106,7 @@ public final class Re2JRegexp {
                 list.add(null);
                 continue;
             }
-            list.add(searchedGroup.toString());
+            list.add(searchedGroup.toStringUtf8());
         }
         return list;
     }
