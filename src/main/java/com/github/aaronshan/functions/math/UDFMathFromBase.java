@@ -30,8 +30,7 @@ public class UDFMathFromBase extends UDF {
         checkRadix(radix.get());
         try {
             result.set(Long.parseLong(value.toString(), (int) radix.get()));
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new HiveException(format("Not a valid base-%d number: %s", radix, value.toString()), e);
         }
         return result;

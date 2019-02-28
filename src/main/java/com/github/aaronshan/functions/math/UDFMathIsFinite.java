@@ -4,7 +4,6 @@ import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.BooleanWritable;
 import org.apache.hadoop.io.DoubleWritable;
-import sun.misc.DoubleConsts;
 
 /**
  * @author ruifeng.shan
@@ -14,6 +13,7 @@ import sun.misc.DoubleConsts;
         , value = "_FUNC_(double) - test if value is finite."
         , extended = "Example:\n > select _FUNC_(double) from src;")
 public class UDFMathIsFinite extends UDF {
+    public static final double MAX_VALUE = 1.7976931348623157E308D;
     BooleanWritable result = new BooleanWritable();
 
     public UDFMathIsFinite() {
@@ -29,6 +29,6 @@ public class UDFMathIsFinite extends UDF {
     }
 
     private boolean isFinite(double d) {
-        return Math.abs(d) <= DoubleConsts.MAX_VALUE;
+        return Math.abs(d) <= MAX_VALUE;
     }
 }
