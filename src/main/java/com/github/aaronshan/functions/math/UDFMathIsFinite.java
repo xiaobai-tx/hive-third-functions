@@ -4,6 +4,7 @@ import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.BooleanWritable;
 import org.apache.hadoop.io.DoubleWritable;
+import sun.misc.DoubleConsts;
 
 /**
  * @author ruifeng.shan
@@ -22,8 +23,12 @@ public class UDFMathIsFinite extends UDF {
         if (num == null) {
             result.set(false);
         } else {
-            result.set(Double.isFinite(num.get()));
+            result.set(isFinite(num.get()));
         }
         return result;
+    }
+
+    private boolean isFinite(double d) {
+        return Math.abs(d) <= DoubleConsts.MAX_VALUE;
     }
 }

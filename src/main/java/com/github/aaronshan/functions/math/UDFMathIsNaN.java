@@ -22,8 +22,12 @@ public class UDFMathIsNaN extends UDF {
         if (num == null) {
             result.set(false);
         } else {
-            result.set(Double.isNaN(num.get()));
+            result.set(isNaN(num.get()));
         }
         return result;
+    }
+
+    private boolean isNaN(double v) {
+        return (v != v);
     }
 }
