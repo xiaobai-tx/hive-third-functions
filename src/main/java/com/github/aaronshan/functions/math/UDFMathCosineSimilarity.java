@@ -1,6 +1,9 @@
 package com.github.aaronshan.functions.math;
 
-import org.apache.hadoop.hive.ql.exec.*;
+import org.apache.hadoop.hive.ql.exec.Description;
+import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
+import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
+import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
 import org.apache.hadoop.hive.ql.udf.generic.GenericUDF;
 import org.apache.hadoop.hive.serde.serdeConstants;
@@ -15,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "cosine_similarity"
         , value = "_FUNC_(map(varchar,double), map(varchar,double)) - cosine similarity between the given sparse vectors."
@@ -100,8 +103,8 @@ public class UDFMathCosineSimilarity extends GenericUDF {
             return null;
         }
 
-        Map<?,?> leftMap = leftMapOI.getMap(leftMapObj);
-        Map<?,?> rightMap = leftMapOI.getMap(rightMapObj);
+        Map<?, ?> leftMap = leftMapOI.getMap(leftMapObj);
+        Map<?, ?> rightMap = leftMapOI.getMap(rightMapObj);
 
         Double normLeftMap = mapL2Norm(leftMap);
         Double normRightMap = mapL2Norm(rightMap);
@@ -114,7 +117,7 @@ public class UDFMathCosineSimilarity extends GenericUDF {
         return new DoubleWritable(dotProduct / (normLeftMap * normRightMap));
     }
 
-    private double mapDotProduct(Map<?,?> leftMap, Map<?,?> rightMap) {
+    private double mapDotProduct(Map<?, ?> leftMap, Map<?, ?> rightMap) {
         double result = 0.0;
 
         for (Map.Entry<?, ?> entry : rightMap.entrySet()) {
@@ -128,7 +131,7 @@ public class UDFMathCosineSimilarity extends GenericUDF {
         return result;
     }
 
-    private Double mapL2Norm(Map<?,?> map) {
+    private Double mapL2Norm(Map<?, ?> map) {
         double norm = 0.0;
         for (Map.Entry<?, ?> entry : map.entrySet()) {
             if (entry.getValue() == null) {

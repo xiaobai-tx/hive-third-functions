@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 17:02
+ * date: 2016-07-27
+ * time: 17:02
  */
 @Description(name = "bd_to_gcj"
         , value = "_FUNC_(bdLat, bdLng) - Convert BD-09 to GCJ-02."

@@ -14,8 +14,8 @@ import static com.fasterxml.jackson.core.JsonToken.*;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 14:47
+ * date: 2016-07-25
+ * time: 14:47
  */
 public class JsonUtils {
     private static final JsonFactory JSON_FACTORY = new JsonFactory()

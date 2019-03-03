@@ -7,7 +7,7 @@ import org.apache.hadoop.io.DoubleWritable;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "is_nan"
         , value = "_FUNC_(double) - test if value is nan."
@@ -22,8 +22,12 @@ public class UDFMathIsNaN extends UDF {
         if (num == null) {
             result.set(false);
         } else {
-            result.set(Double.isNaN(num.get()));
+            result.set(isNaN(num.get()));
         }
         return result;
+    }
+
+    private boolean isNaN(double v) {
+        return (v != v);
     }
 }

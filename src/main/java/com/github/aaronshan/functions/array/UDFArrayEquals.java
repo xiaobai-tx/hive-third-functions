@@ -15,8 +15,8 @@ import org.apache.hadoop.io.BooleanWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-09-08
- * @time 16:03
+ * date: 2016-09-08
+ * time: 16:03
  */
 @Description(name = "array_equals"
         , value = "_FUNC_(array, array) - whether two arrays equals or not."

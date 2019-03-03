@@ -11,7 +11,7 @@ import static java.lang.String.format;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "from_base"
         , value = "_FUNC_(string, long) - convert a number to a string in the given base."
@@ -30,8 +30,7 @@ public class UDFMathFromBase extends UDF {
         checkRadix(radix.get());
         try {
             result.set(Long.parseLong(value.toString(), (int) radix.get()));
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new HiveException(format("Not a valid base-%d number: %s", radix, value.toString()), e);
         }
         return result;

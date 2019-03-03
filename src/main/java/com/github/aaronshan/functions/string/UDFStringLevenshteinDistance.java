@@ -15,8 +15,8 @@ import static io.airlift.slice.SliceUtf8.tryGetCodePointAt;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-26
- * @time 23:53
+ * date: 2018-07-26
+ * time: 23:53
  */
 @Description(name = "levenshtein_distance"
         , value = "_FUNC_(string, string) - computes Levenshtein distance between two strings."
@@ -28,11 +28,12 @@ public class UDFStringLevenshteinDistance extends UDF {
     }
 
     /**
-     * hamming distance.
+     * Levenshtein distance.
      *
-     * @param leftText
-     * @param rightText
-     * @return
+     * @param leftText left string
+     * @param rightText right string
+     * @return Levenshtein distance
+     * @throws HiveException hive exception
      */
     public LongWritable evaluate(Text leftText, Text rightText) throws HiveException {
         if (leftText == null || rightText == null) {

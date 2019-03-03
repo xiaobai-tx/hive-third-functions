@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 14:57
+ * date: 2016-07-25
+ * time: 14:57
  */
 @Description(name = "json_array_length", value = "_FUNC_(json, json_path) - Returns the array length of json (a string containing a JSON array). "
         , extended = "Example:\n"

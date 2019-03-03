@@ -6,8 +6,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorUtils;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 22:33
+ * date: 2016-07-27
+ * time: 22:33
  */
 public final class MapUtils {
     public static<K, V> boolean mapEquals(Map<K,V> left, Map<K, V> right) {

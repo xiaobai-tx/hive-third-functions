@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  * @author aaron02
- * @date 2018-08-18 上午8:52
+ * date: 2018-08-18 上午8:52
  */
 @Description(name = "array_shuffle"
         , value = "_FUNC_(array<E>) - Generates a random permutation of the given array."

@@ -7,8 +7,8 @@ import java.util.Map;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 16:57
+ * date: 2016-07-27
+ * time: 16:57
  */
 public class GeoUtils {
     private static final double xPi = 3.14159265358979324 * 3000.0 / 180.0;

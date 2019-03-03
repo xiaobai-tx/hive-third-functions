@@ -7,12 +7,13 @@ import org.apache.hadoop.io.DoubleWritable;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "is_finite"
         , value = "_FUNC_(double) - test if value is finite."
         , extended = "Example:\n > select _FUNC_(double) from src;")
 public class UDFMathIsFinite extends UDF {
+    public static final double MAX_VALUE = 1.7976931348623157E308D;
     BooleanWritable result = new BooleanWritable();
 
     public UDFMathIsFinite() {
@@ -22,8 +23,12 @@ public class UDFMathIsFinite extends UDF {
         if (num == null) {
             result.set(false);
         } else {
-            result.set(Double.isFinite(num.get()));
+            result.set(isFinite(num.get()));
         }
         return result;
+    }
+
+    private boolean isFinite(double d) {
+        return Math.abs(d) <= MAX_VALUE;
     }
 }

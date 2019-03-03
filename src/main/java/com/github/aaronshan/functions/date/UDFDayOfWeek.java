@@ -13,7 +13,7 @@ import java.util.Calendar;
 
 /**
  * @author ruifeng.shan
- * @date 15-8-31
+ * date: 15-8-31
  */
 @Description(name = "day_of_week"
         , value = "_FUNC_(date) - day of week. if monday, return 1, tuesday return 2 ... sunday return 7."

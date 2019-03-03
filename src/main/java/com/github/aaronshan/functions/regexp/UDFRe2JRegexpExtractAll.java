@@ -15,8 +15,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:38
+ * date: 2018-07-27
+ * time: 22:38
  */
 @Description(name = "regexp_extract_all"
         , value = "_FUNC_(string, string) - string(s) extracted using the given pattern\n" +
@@ -33,7 +33,7 @@ public class UDFRe2JRegexpExtractAll extends GenericUDF {
     @Override
     public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException {
         // Check if two arguments were passed
-        if (arguments.length != 2 || arguments.length != 3) {
+        if (arguments.length != 2 && arguments.length != 3) {
             throw new UDFArgumentLengthException(
                     "The function regexp_extract_all takes exactly 2 or 3 arguments.");
         }

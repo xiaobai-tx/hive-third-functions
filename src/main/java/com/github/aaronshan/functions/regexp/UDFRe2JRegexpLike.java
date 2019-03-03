@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:36
+ * date: 2018-07-27
+ * time: 22:36
  */
 @Description(name = "regexp_like"
         , value = "_FUNC_(string, string) - returns substrings matching a regular expression."

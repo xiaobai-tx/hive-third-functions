@@ -40,7 +40,19 @@ It will generate hive-third-functions-${version}-shaded.jar in target directory.
 
 You can also directly download file from [release page](https://github.com/aaronshan/hive-third-functions/releases).
 
-> current latest version is `2.2.0`
+> current latest version is `2.2.1`
+
+## Maven
+
+Now, I had already release `hive-third-functions` to maven repositories. To add a dependency on `hive-third-functions` using Maven, use the following:
+
+```
+<dependency>
+  <groupId>com.github.aaronshan</groupId>
+  <artifactId>hive-third-functions</artifactId>
+  <version>2.2.1</version>
+</dependency>
+```
 
 ## Functions
 
@@ -211,11 +223,11 @@ create temporary function array_concat as 'com.github.aaronshan.functions.array.
 create temporary function array_value_count as 'com.github.aaronshan.functions.array.UDFArrayValueCount';
 create temporary function array_slice as 'com.github.aaronshan.functions.array.UDFArraySlice';
 create temporary function array_element_at as 'com.github.aaronshan.functions.array.UDFArrayElementAt';
-create temporary function bit_count as 'com.github.aaronshan.functions.bitwise.UDFBitCount';
-create temporary function bitwise_and as 'com.github.aaronshan.functions.bitwise.UDFBitwiseAnd';
 create temporary function array_shuffle as 'com.github.aaronshan.functions.array.UDFArrayShuffle';
 create temporary function sequence as 'com.github.aaronshan.functions.array.UDFSequence';
 create temporary function array_value_count as 'com.github.aaronshan.functions.array.UDFArrayValueCount';
+create temporary function bit_count as 'com.github.aaronshan.functions.bitwise.UDFBitCount';
+create temporary function bitwise_and as 'com.github.aaronshan.functions.bitwise.UDFBitwiseAnd';
 create temporary function bitwise_not as 'com.github.aaronshan.functions.bitwise.UDFBitwiseNot';
 create temporary function bitwise_or as 'com.github.aaronshan.functions.bitwise.UDFBitwiseOr';
 create temporary function bitwise_xor as 'com.github.aaronshan.functions.bitwise.UDFBitwiseXor';

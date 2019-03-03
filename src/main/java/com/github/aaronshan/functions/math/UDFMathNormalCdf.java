@@ -10,8 +10,8 @@ import static com.github.aaronshan.functions.utils.Failures.checkCondition;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-26
- * @time 23:03
+ * date: 2018-07-26
+ * time: 23:03
  */
 @Description(name = "normal_cdf"
         , value = "_FUNC_(mean, sd, v) - normal cdf given a mean, standard deviation, and value."

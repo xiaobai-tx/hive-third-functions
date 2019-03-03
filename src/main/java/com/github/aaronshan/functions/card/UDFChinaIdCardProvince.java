@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 19:42
+ * date: 2016-07-25
+ * time: 19:42
  */
 @Description(name = "id_card_province"
         , value = "_FUNC_(string) - get province by given china id card."

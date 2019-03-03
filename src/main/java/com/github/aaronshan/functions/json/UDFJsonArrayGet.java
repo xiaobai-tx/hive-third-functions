@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 15:29
+ * date: 2016-07-25
+ * time: 15:29
  */
 @Description(name = "json_array_get", value = "_FUNC_(json, json_path) - returns the element at the specified index into the json_array. The index is zero-based.. "
         , extended = "Example:\n"

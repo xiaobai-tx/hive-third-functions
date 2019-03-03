@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 14:29
+ * date: 2016-07-25
+ * time: 14:29
  */
 @Description(name = "sha256"
         , value = "_FUNC_(string) - get sha256 hash code by given input string."
@@ -20,10 +20,10 @@ public class UDFSha256 extends UDF {
     }
 
     /**
-     * md5 hash.
+     * sha256 hash.
      *
-     * @param text
-     * @return
+     * @param text 字符串
+     * @return sha256 hash.
      */
     public Text evaluate(Text text) {
         if (text == null) {

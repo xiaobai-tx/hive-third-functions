@@ -1,9 +1,9 @@
 package com.github.aaronshan.functions.regexp;
 
+import com.github.aaronshan.functions.regexp.re2j.Matcher;
+import com.github.aaronshan.functions.regexp.re2j.Options;
+import com.github.aaronshan.functions.regexp.re2j.Pattern;
 import com.google.common.collect.Lists;
-import com.google.re2j.Matcher;
-import com.google.re2j.Options;
-import com.google.re2j.Pattern;
 import io.airlift.slice.Slice;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
 import org.slf4j.Logger;
@@ -11,14 +11,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static com.github.aaronshan.functions.regexp.re2j.Options.Algorithm.DFA_FALLBACK_TO_NFA;
 import static com.google.common.base.Preconditions.checkState;
-import static com.google.re2j.Options.Algorithm.DFA_FALLBACK_TO_NFA;
 import static java.lang.String.format;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:20
+ * date: 2018-07-27
+ * time: 22:20
  */
 public final class Re2JRegexp {
     private static final Logger log = LoggerFactory.getLogger(Re2JRegexp.class);
@@ -68,6 +68,13 @@ public final class Re2JRegexp {
         }
     }
 
+    public static int toIntExact(long value) {
+        if ((int) value != value) {
+            throw new ArithmeticException("integer overflow");
+        }
+        return (int) value;
+    }
+
     public boolean matches(Slice source) {
         return re2jPatternWithoutDotStartPrefix.find(source);
     }
@@ -83,16 +90,9 @@ public final class Re2JRegexp {
         }
     }
 
-    public static int toIntExact(long value) {
-        if ((int)value != value) {
-            throw new ArithmeticException("integer overflow");
-        }
-        return (int)value;
-    }
-
     public List<Object> extractAll(Slice source, long groupIndex) throws HiveException {
         Matcher matcher = re2jPattern.matcher(source);
-        int group = (int)(groupIndex);
+        int group = (int) (groupIndex);
         validateGroup(group, matcher.groupCount());
 
         List<Object> list = Lists.newArrayList();
@@ -106,14 +106,14 @@ public final class Re2JRegexp {
                 list.add(null);
                 continue;
             }
-            list.add(searchedGroup.toString());
+            list.add(searchedGroup.toStringUtf8());
         }
         return list;
     }
 
     public Slice extract(Slice source, long groupIndex) throws HiveException {
         Matcher matcher = re2jPattern.matcher(source);
-        int group = (int)(groupIndex);
+        int group = (int) (groupIndex);
         validateGroup(group, matcher.groupCount());
 
         if (!matcher.find()) {

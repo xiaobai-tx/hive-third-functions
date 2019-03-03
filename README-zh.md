@@ -10,8 +10,7 @@
 hive-third-functions 包含了一些很有用的hive udf函数，特别是数组和json函数.
 
 > 注意:
-> 1. hive-third-functions支持hive-0.11.0或更高版本.
-> 2. 运行`3.0.0`及以上版本需要Java8及以上
+> hive-third-functions支持hive-0.11.0或更高版本.
 
 ## 编译
 
@@ -41,7 +40,19 @@ mvn clean package -DskipTests
 
 你也可以直接在发布页下载打包好了最新版本 [发布页](https://github.com/aaronshan/hive-third-functions/releases).
 
-> 当前最新的版本是 `3.0.0`
+> 当前最新的版本是 `2.2.1`
+
+## Maven
+
+现在，我已经把`hive-third-functions`发布到maven中央仓库了。你可以在pom文件中增加如下dependency来使用它：
+
+```
+<dependency>
+  <groupId>com.github.aaronshan</groupId>
+  <artifactId>hive-third-functions</artifactId>
+  <version>2.2.1</version>
+</dependency>
+```
 
 ## 函数
 
@@ -185,10 +196,11 @@ create temporary function array_concat as 'com.github.aaronshan.functions.array.
 create temporary function array_value_count as 'com.github.aaronshan.functions.array.UDFArrayValueCount';
 create temporary function array_slice as 'com.github.aaronshan.functions.array.UDFArraySlice';
 create temporary function array_element_at as 'com.github.aaronshan.functions.array.UDFArrayElementAt';
-create temporary function bit_count as 'com.github.aaronshan.functions.bitwise.UDFBitCount';
-create temporary function bitwise_and as 'com.github.aaronshan.functions.bitwise.UDFBitwiseAnd';
 create temporary function array_shuffle as 'com.github.aaronshan.functions.array.UDFArrayShuffle';
 create temporary function sequence as 'com.github.aaronshan.functions.array.UDFSequence';
+create temporary function array_value_count as 'com.github.aaronshan.functions.array.UDFArrayValueCount';
+create temporary function bit_count as 'com.github.aaronshan.functions.bitwise.UDFBitCount';
+create temporary function bitwise_and as 'com.github.aaronshan.functions.bitwise.UDFBitwiseAnd';
 create temporary function bitwise_not as 'com.github.aaronshan.functions.bitwise.UDFBitwiseNot';
 create temporary function bitwise_or as 'com.github.aaronshan.functions.bitwise.UDFBitwiseOr';
 create temporary function bitwise_xor as 'com.github.aaronshan.functions.bitwise.UDFBitwiseXor';
@@ -204,6 +216,13 @@ create temporary function zodiac_en as 'com.github.aaronshan.functions.date.UDFZ
 create temporary function pinyin as 'com.github.aaronshan.functions.string.UDFChineseToPinYin';
 create temporary function md5 as 'com.github.aaronshan.functions.string.UDFMd5';
 create temporary function sha256 as 'com.github.aaronshan.functions.string.UDFSha256';
+create temporary function codepoint as 'com.github.aaronshan.functions.string.UDFCodePoint';
+create temporary function hamming_distance as 'com.github.aaronshan.functions.string.UDFStringHammingDistance';
+create temporary function levenshtein_distance as 'com.github.aaronshan.functions.string.UDFStringLevenshteinDistance';
+create temporary function normalize as 'com.github.aaronshan.functions.string.UDFStringNormalize';
+create temporary function strpos as 'com.github.aaronshan.functions.string.UDFStringPosition';
+create temporary function split_to_map as 'com.github.aaronshan.functions.string.UDFStringSplitToMap';
+create temporary function split_to_multimap as 'com.github.aaronshan.functions.string.UDFStringSplitToMultimap';
 create temporary function json_array_get as 'com.github.aaronshan.functions.json.UDFJsonArrayGet';
 create temporary function json_array_length as 'com.github.aaronshan.functions.json.UDFJsonArrayLength';
 create temporary function json_array_extract as 'com.github.aaronshan.functions.json.UDFJsonArrayExtract';
@@ -229,11 +248,18 @@ create temporary function url_decode as 'com.github.aaronshan.functions.url.UDFU
 create temporary function infinity as 'com.github.aaronshan.functions.math.UDFMathInfinity';
 create temporary function is_finite as 'com.github.aaronshan.functions.math.UDFMathIsFinite';
 create temporary function is_infinite as 'com.github.aaronshan.functions.math.UDFMathIsInfinite';
+create temporary function nan as 'com.github.aaronshan.functions.math.UDFMathNaN';
 create temporary function is_nan as 'com.github.aaronshan.functions.math.UDFMathIsNaN';
-create temporary function nan as 'com.github.aaronshan.functions.math.UDFMathIsNaN';
 create temporary function from_base as 'com.github.aaronshan.functions.math.UDFMathFromBase';
 create temporary function to_base as 'com.github.aaronshan.functions.math.UDFMathToBase';
 create temporary function cosine_similarity as 'com.github.aaronshan.functions.math.UDFMathCosineSimilarity';
+create temporary function normal_cdf as 'com.github.aaronshan.functions.math.UDFMathNormalCdf';
+create temporary function inverse_normal_cdf as 'com.github.aaronshan.functions.math.UDFMathInverseNormalCdf';
+create temporary function regexp_extract as 'com.github.aaronshan.functions.regexp.UDFRe2JRegexpExtract';
+create temporary function regexp_extract_all as 'com.github.aaronshan.functions.regexp.UDFRe2JRegexpExtractAll';
+create temporary function regexp_like as 'com.github.aaronshan.functions.regexp.UDFRe2JRegexpLike';
+create temporary function regexp_replace as 'com.github.aaronshan.functions.regexp.UDFRe2JRegexpReplace';
+create temporary function regexp_split as 'com.github.aaronshan.functions.regexp.UDFRe2JRegexpSplit';
 ```
 
 你可以在hive的命令杭中使用下面的语句来查看函数的细节.

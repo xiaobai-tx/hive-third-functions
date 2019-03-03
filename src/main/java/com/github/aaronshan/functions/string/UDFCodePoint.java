@@ -14,8 +14,8 @@ import static io.airlift.slice.SliceUtf8.countCodePoints;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-26
- * @time 23:23
+ * date: 2018-07-26
+ * time: 23:23
  */
 @Description(name = "codepoint"
         , value = "_FUNC_(string) - returns Unicode code point of a single character string."
@@ -29,8 +29,9 @@ public class UDFCodePoint extends UDF {
     /**
      * codepoint.
      *
-     * @param text
-     * @return
+     * @param text 字符串
+     * @return Unicode code point
+     * @throws HiveException hive exception
      */
     public LongWritable evaluate(Text text) throws HiveException {
         if (text == null) {

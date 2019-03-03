@@ -8,8 +8,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorUtils;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:35
+ * date: 2016-07-26
+ * time: 17:35
  */
 public class ArrayUtils {
     public static IntComparator IntArrayCompare(final Object array, final ListObjectInspector arrayOI) {
