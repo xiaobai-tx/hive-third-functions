@@ -14,8 +14,8 @@ import org.apache.hadoop.io.LongWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 20:58
+ * date: 2016-07-26
+ * time: 20:58
  */
 @Description(name = "array_value_count"
         , value = "_FUNC_(array<E>, E) - count array's element number that element value equals given value."

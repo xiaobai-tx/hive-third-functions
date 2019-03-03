@@ -17,8 +17,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 15:33
+ * date: 2016-07-25
+ * time: 15:33
  */
 @Description(name = "json_array_extract_scalar", value = "_FUNC_(json, json_path) - extract json array by given jsonPath. but returns the result value as a string (as opposed to being encoded as JSON)."
         , extended = "Example:\n"

@@ -15,8 +15,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:31
+ * date: 2016-07-26
+ * time: 17:31
  */
 @Description(name = "array_join"
         , value = "_FUNC_(array<E>, delimiter, null_replacement) - concatenates the elements of the given array using the delimiter and an optional null_replacement to replace nulls."

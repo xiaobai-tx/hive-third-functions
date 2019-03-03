@@ -17,8 +17,8 @@ import static java.lang.String.format;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:20
+ * date: 2018-07-27
+ * time: 22:20
  */
 public final class Re2JRegexp {
     private static final Logger log = LoggerFactory.getLogger(Re2JRegexp.class);

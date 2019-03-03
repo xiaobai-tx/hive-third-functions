@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 16:04
+ * date: 2016-07-27
+ * time: 16:04
  */
 @Description(name = "url_encode"
         , value = "_FUNC_(value) - string\n Escapes value by encoding it so that it can be safely included in URL query parameter names and values:\n"

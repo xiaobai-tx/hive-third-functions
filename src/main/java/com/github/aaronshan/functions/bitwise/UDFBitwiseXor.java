@@ -6,8 +6,8 @@ import org.apache.hadoop.io.LongWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 15:50
+ * date: 2016-07-27
+ * time: 15:50
  */
 @Description(name = "bitwise_xor"
         , value = "_FUNC_(x, y) - returns the bitwise XOR of x and y in 2’s complement arithmetic."

@@ -15,8 +15,8 @@ import static com.github.aaronshan.functions.utils.ArrayUtils.IntArrayCompare;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:32
+ * date: 2016-07-26
+ * time: 17:32
  */
 @Description(name = "array_min"
         , value = "_FUNC_(array) - returns the minimum value of input array."

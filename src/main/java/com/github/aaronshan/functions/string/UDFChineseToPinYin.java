@@ -30,8 +30,8 @@ public class UDFChineseToPinYin extends UDF {
     /**
      * convert chinese han zi to pinyin.
      *
-     * @param chinese
-     * @return
+     * @param chinese 中文字符串
+     * @return 中文字符串的拼音
      */
     public Text evaluate(Text chinese) {
         if (chinese == null) {

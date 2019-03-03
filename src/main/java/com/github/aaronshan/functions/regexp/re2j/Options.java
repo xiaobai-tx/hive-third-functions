@@ -2,7 +2,7 @@ package com.github.aaronshan.functions.regexp.re2j;
 
 /**
  * @author aaron02
- * @date 2019-03-01 11:47 AM
+ * date: 2019-03-01 11:47 AM
  */
 
 import com.google.common.base.Preconditions;

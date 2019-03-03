@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:37
+ * date: 2018-07-27
+ * time: 22:37
  */
 @Description(name = "regexp_replace"
         , value = "_FUNC_(string, string) - removes substrings matching a regular expression\n" +

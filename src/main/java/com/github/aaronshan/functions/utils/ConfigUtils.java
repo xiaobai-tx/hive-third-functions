@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-07
- * @time 16:21
+ * date: 2016-07-07
+ * time: 16:21
  */
 public class ConfigUtils {
     private static Logger logger = LoggerFactory.getLogger(ConfigUtils.class);

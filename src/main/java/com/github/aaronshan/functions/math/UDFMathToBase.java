@@ -10,7 +10,7 @@ import static com.github.aaronshan.functions.utils.MathUtils.checkRadix;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "to_base"
         , value = "_FUNC_(long, long) - convert a number to a string in the given base."

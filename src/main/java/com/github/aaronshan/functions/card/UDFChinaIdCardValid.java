@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 20:15
+ * date: 2016-07-25
+ * time: 20:15
  */
 @Description(name = "is_valid_id_card"
         , value = "_FUNC_(string) - whether given china id card is valid or not."

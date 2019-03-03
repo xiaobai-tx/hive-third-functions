@@ -14,8 +14,8 @@ import org.apache.hadoop.io.LongWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:32
+ * date: 2016-07-26
+ * time: 17:32
  */
 @Description(name = "array_position"
         , value = "_FUNC_(array<E>, E) - returns the position of the first occurrence of the element in array (or 0 if not found)."

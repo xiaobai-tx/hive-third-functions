@@ -9,8 +9,8 @@ import java.util.Map;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 19:35
+ * date: 2016-07-25
+ * time: 19:35
  */
 public class CardUtils {
     private static final Map<String, ChinaIdArea> chinaIdAreaMap = ConfigUtils.getIdCardMap();
@@ -99,8 +99,8 @@ public class CardUtils {
     /**
      * 判断是否是正确的身份证号
      *
-     * @param card
-     * @return
+     * @param card 身份证号
+     * @return 是否是正确的身份证号
      */
     public static boolean isValidIdCard(String card) {
         if (!Strings.isNullOrEmpty(card)) {
@@ -131,7 +131,7 @@ public class CardUtils {
      * 获取正确的校验码
      *
      * @param card17 18位身份证前17位
-     * @return
+     * @return 正确的校验码
      */
     private static char getValidateCode(String card17) {
         int sum = 0, mode = 0;

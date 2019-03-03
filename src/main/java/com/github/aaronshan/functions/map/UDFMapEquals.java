@@ -18,8 +18,8 @@ import org.apache.hadoop.io.BooleanWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 23:31
+ * date: 2016-07-27
+ * time: 23:31
  */
 @Description(name = "map_equals"
         , value = "_FUNC_(x<K, V>, y<K, V>) - whether map x equals with map y or not."

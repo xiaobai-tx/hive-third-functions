@@ -11,8 +11,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.*;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 18:03
+ * date: 2016-07-26
+ * time: 18:03
  */
 @Description(name = "array_reverse"
         , value = "_FUNC_(array) - reverse the array element."

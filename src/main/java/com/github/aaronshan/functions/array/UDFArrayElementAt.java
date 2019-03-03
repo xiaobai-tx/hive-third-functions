@@ -14,8 +14,8 @@ import org.apache.hadoop.io.IntWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 10:09
+ * date: 2016-07-27
+ * time: 10:09
  */
 @Description(name = "array_element_at"
         , value = "_FUNC_(array<E>, index) - returns element of array at given index. If index < 0, element_at accesses elements from the last to the first."

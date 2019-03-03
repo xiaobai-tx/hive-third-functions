@@ -21,8 +21,8 @@ import static com.github.aaronshan.functions.utils.Failures.checkCondition;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 00:04
+ * date: 2018-07-27
+ * time: 00:04
  */
 @Description(name = "split_to_multimap"
         , value = "_FUNC_(string, string, string) - creates a multimap by splitting a string into key/value pairs."

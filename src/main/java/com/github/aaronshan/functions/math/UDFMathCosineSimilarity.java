@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "cosine_similarity"
         , value = "_FUNC_(map(varchar,double), map(varchar,double)) - cosine similarity between the given sparse vectors."
