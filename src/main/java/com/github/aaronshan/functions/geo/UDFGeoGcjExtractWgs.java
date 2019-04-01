@@ -2,6 +2,7 @@ package com.github.aaronshan.functions.geo;
 
 import com.github.aaronshan.functions.utils.GeoUtils;
 import org.apache.hadoop.hive.ql.exec.Description;
+import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.Text;
 
 /**
@@ -12,7 +13,7 @@ import org.apache.hadoop.io.Text;
 @Description(name = "gcj_extract_wgs"
         , value = "_FUNC_(gcjLat, gcjLng) - Convert GCJ-02 to WGS-84."
         , extended = "Example:\n > select _FUNC_(gcjLat, gcjLng) from src;")
-public class UDFGeoGcjExtractWgs {
+public class UDFGeoGcjExtractWgs extends UDF {
     private Text result = new Text();
 
     public Text evaluate(double gcjLat, double gcjLng) {
