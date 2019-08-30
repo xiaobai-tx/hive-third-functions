@@ -1,5 +1,6 @@
 # hive-third-functions 
 
+[![Author](https://img.shields.io/badge/Author-%E4%B8%AD%E9%BE%84%E7%A8%8B%E5%BA%8F%E5%91%98-blue.svg)](https://www.shanruifeng.win)
 [![Build Status](https://travis-ci.org/aaronshan/hive-third-functions.svg?branch=master)](https://travis-ci.org/aaronshan/hive-third-functions)
 [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/aaronshan/hive-third-functions/tree/master/README.md)
 [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://github.com/aaronshan/hive-third-functions/tree/master/README-zh.md)
