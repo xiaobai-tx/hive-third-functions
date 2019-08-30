@@ -5,6 +5,7 @@
 [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/aaronshan/hive-third-functions/tree/master/README.md)
 [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://github.com/aaronshan/hive-third-functions/tree/master/README-zh.md)
 [![Release](https://img.shields.io/github/release/aaronshan/hive-third-functions.svg)](https://github.com/aaronshan/hive-third-functions/releases)
+[![Stars](https://img.shields.io/github/stars/aaronshan/hive-third-functions.svg?label=Stars&style=social)](https://github.com/aaronshan/hive-third-functions)
 
 ## Introduction
 
