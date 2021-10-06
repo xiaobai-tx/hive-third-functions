@@ -9,7 +9,7 @@ import java.text.Normalizer;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27 下午12:37
+ * date: 2018-07-27 下午12:37
  */
 @Description(name = "normalize"
         , value = "_FUNC_(string, string) - transforms the string to normalized form."

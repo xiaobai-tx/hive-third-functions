@@ -6,8 +6,8 @@ import org.apache.hadoop.io.LongWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 15:49
+ * date: 2016-07-27
+ * time: 15:49
  */
 @Description(name = "bitwise_and"
         , value = "_FUNC_(x, y) - returns the bitwise AND of x and y in 2’s complement arithmetic."

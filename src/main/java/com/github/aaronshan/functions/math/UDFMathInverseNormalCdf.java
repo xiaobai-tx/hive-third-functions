@@ -10,8 +10,8 @@ import static com.github.aaronshan.functions.utils.Failures.checkCondition;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-26
- * @time 23:04
+ * date: 2018-07-26
+ * time: 23:04
  */
 @Description(name = "inverse_normal_cdf"
         , value = "_FUNC_(mean, sd, p) - inverse of normal cdf given a mean, std, and probability."

@@ -15,8 +15,8 @@ import static com.github.aaronshan.functions.utils.ArrayUtils.IntArrayCompare;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:31
+ * date: 2016-07-26
+ * time: 17:31
  */
 @Description(name = "array_max"
         , value = "_FUNC_(array) - returns the maximum value of input array."

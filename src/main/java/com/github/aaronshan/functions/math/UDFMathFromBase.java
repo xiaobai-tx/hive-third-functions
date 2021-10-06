@@ -11,7 +11,7 @@ import static java.lang.String.format;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "from_base"
         , value = "_FUNC_(string, long) - convert a number to a string in the given base."

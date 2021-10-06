@@ -14,7 +14,7 @@ import org.apache.hadoop.io.BooleanWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2015-3-23
+ * date: 2015-3-23
  */
 @Description(name = "array_contains"
         , value = "_FUNC_(array<E>, E) - whether array contains value or not."

@@ -14,8 +14,8 @@ import static com.github.aaronshan.functions.utils.ArrayUtils.IntArrayCompare;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 17:29
+ * date: 2016-07-26
+ * time: 17:29
  */
 @Description(name = "array_distinct"
         , value = "_FUNC_(array) - remove duplicate values from the array."

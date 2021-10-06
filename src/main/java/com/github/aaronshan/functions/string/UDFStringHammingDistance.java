@@ -14,8 +14,8 @@ import static io.airlift.slice.SliceUtf8.tryGetCodePointAt;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-26
- * @time 23:43
+ * date: 2018-07-26
+ * time: 23:43
  */
 @Description(name = "hamming_distance"
         , value = "_FUNC_(string, string) - computes Hamming distance between two strings."
@@ -29,9 +29,10 @@ public class UDFStringHammingDistance extends UDF {
     /**
      * hamming distance.
      *
-     * @param leftText
-     * @param rightText
-     * @return
+     * @param leftText left string
+     * @param rightText right string
+     * @return hamming distance.
+     * @throws HiveException hive exception
      */
     public LongWritable evaluate(Text leftText, Text rightText) throws HiveException {
         if (leftText == null || rightText == null) {

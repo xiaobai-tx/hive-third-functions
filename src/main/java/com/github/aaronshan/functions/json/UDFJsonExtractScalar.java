@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 16:26
+ * date: 2016-07-25
+ * time: 16:26
  */
 @Description(name = "json_extract_scalar", value = "_FUNC_(json, json_path) - like json_extract, but returns the result value as a string (as opposed to being encoded as JSON). "
         , extended = "Example:\n"

@@ -2,8 +2,8 @@ package com.github.aaronshan.functions.model;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-07
- * @time 18:20
+ * date: 2016-07-07
+ * time: 18:20
  */
 public class ChinaIdArea {
     private String province;

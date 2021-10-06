@@ -7,7 +7,7 @@ import org.apache.hadoop.io.DoubleWritable;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "is_infinite"
         , value = "_FUNC_(double) - test if value is infinite."

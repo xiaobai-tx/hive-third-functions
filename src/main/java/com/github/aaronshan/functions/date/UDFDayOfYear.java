@@ -12,8 +12,8 @@ import org.joda.time.format.DateTimeFormatter;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 15:58
+ * date: 2016-07-27
+ * time: 15:58
  */
 @Description(name = "day_of_year"
         , value = "_FUNC_(date) - returns the day of the year from x. The value ranges from 1 to 366."

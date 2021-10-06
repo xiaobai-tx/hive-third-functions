@@ -2,8 +2,8 @@ package com.github.aaronshan.functions.utils.json;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 15:15
+ * date: 2016-07-25
+ * time: 15:15
  */
 public class JsonPath {
     private final JsonExtract.JsonExtractor<String> scalarExtractor;

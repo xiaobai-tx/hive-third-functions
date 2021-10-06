@@ -8,7 +8,7 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27 下午12:08
+ * date: 2018-07-27 下午12:08
  */
 @Description(name = "strpos"
         , value = "_FUNC_(string, substring) - returns index of first occurrence of a substring (or 0 if not found)."

@@ -6,7 +6,7 @@ import org.apache.hadoop.io.DoubleWritable;
 
 /**
  * @author ruifeng.shan
- * @date 18-7-23
+ * date: 18-7-23
  */
 @Description(name = "infinity"
         , value = "_FUNC_() - Infinity."

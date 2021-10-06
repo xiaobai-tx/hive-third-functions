@@ -18,8 +18,8 @@ import static com.github.aaronshan.functions.utils.ArrayUtils.IntArrayCompare;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 11:57
+ * date: 2016-07-26
+ * time: 11:57
  */
 @Description(name = "array_intersect"
         , value = "_FUNC_(array, array) - returns the two array's intersection, without duplicates."

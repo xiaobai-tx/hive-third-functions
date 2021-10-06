@@ -12,8 +12,8 @@ import static com.fasterxml.jackson.core.JsonToken.*;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 15:02
+ * date: 2016-07-25
+ * time: 15:02
  */
 public class JsonExtract {
     private static final JsonFactory JSON_FACTORY = new JsonFactory()
@@ -69,14 +69,15 @@ public class JsonExtract {
     public interface JsonExtractor<T> {
         /**
          * Executes the extraction on the existing content of the JsonParser and outputs the match.
-         * <p/>
          * Notes:
          * <ul>
          * <li>JsonParser must be on the FIRST token of the value to be processed when extract is called</li>
          * <li>INVARIANT: when extract() returns, the current token of the parser will be the LAST token of the value</li>
          * </ul>
          *
+         * @param jsonParser json parser
          * @return the value, or null if not applicable
+         * @throws IOException IO exception
          */
         T extract(JsonParser jsonParser)
                 throws IOException;

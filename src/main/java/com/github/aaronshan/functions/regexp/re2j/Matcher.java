@@ -82,7 +82,7 @@ public final class Matcher {
     }
 
     /**
-     * Returns the {@code Pattern} associated with this {@code Matcher}.
+     * @return the {@code Pattern} associated with this {@code Matcher}.
      */
     public Pattern pattern() {
         return pattern;
@@ -119,6 +119,7 @@ public final class Matcher {
     /**
      * Returns the start position of the most recent match.
      *
+     * @return the start position of the most recent match.
      * @throws IllegalStateException if there is no match
      */
     public int start() {
@@ -129,6 +130,7 @@ public final class Matcher {
      * Returns the end position of the most recent match.
      *
      * @throws IllegalStateException if there is no match
+     * @return the end position of the most recent match.
      */
     public int end() {
         return end(0);
@@ -138,6 +140,7 @@ public final class Matcher {
      * Returns the start position of a subgroup of the most recent match.
      *
      * @param group the group index; 0 is the overall match
+     * @return the start position of a subgroup of the most recent match.
      * @throws IllegalStateException     if there is no match
      * @throws IndexOutOfBoundsException if {@code group < 0} or {@code group > groupCount()}
      */
@@ -152,6 +155,7 @@ public final class Matcher {
      * @param group the group index; 0 is the overall match
      * @throws IllegalStateException     if there is no match
      * @throws IndexOutOfBoundsException if {@code group < 0} or {@code group > groupCount()}
+     * @return the end position of a subgroup of the most recent match.
      */
     public int end(int group) {
         loadGroup(group);
@@ -162,6 +166,7 @@ public final class Matcher {
      * Returns the most recent match.
      *
      * @throws IllegalStateException if there is no match
+     * @return the most recent match.
      */
     public Slice group() {
         return group(0);
@@ -170,6 +175,8 @@ public final class Matcher {
     /**
      * Returns the subgroup of the most recent match.
      *
+     * @param group the group index; 0 is the overall match
+     * @return the subgroup of the most recent match.
      * @throws IllegalStateException     if there is no match
      * @throws IndexOutOfBoundsException if {@code group < 0}
      *                                   or {@code group > groupCount()}

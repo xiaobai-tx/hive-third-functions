@@ -11,8 +11,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 16:33
+ * date: 2016-07-25
+ * time: 16:33
  */
 @Description(name = "json_size", value = "_FUNC_(json, json_path) - like json_extract, but returns the size of the value. For objects or arrays, the size is the number of members, and the size of a scalar value is zero. "
         , extended = "Example:\n"

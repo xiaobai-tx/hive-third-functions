@@ -14,8 +14,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorUtils;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-26
- * @time 18:07
+ * date: 2016-07-26
+ * time: 18:07
  */
 @Description(name = "array_remove"
         , value = "_FUNC_(array<E>, E) - remove all elements that equal element from array."

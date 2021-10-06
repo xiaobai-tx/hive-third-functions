@@ -15,7 +15,7 @@ import java.util.List;
 import static com.github.aaronshan.functions.utils.Failures.checkCondition;
 /**
  * @author aaron02
- * @date 2018-08-18 上午9:23
+ * date: 2018-08-18 上午9:23
  */
 @Description(name = "sequence"
         , value = "_FUNC_(start, stop) - Generate a sequence of integers from start to stop.\n" +

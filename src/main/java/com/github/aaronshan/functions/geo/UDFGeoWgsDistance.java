@@ -7,8 +7,8 @@ import org.apache.hadoop.hive.serde2.io.DoubleWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 17:01
+ * date: 2016-07-27
+ * time: 17:01
  */
 @Description(name = "wgs_distance"
         , value = "_FUNC_(lat1, lng1, lat2, lng2) - return WGS84 distance."

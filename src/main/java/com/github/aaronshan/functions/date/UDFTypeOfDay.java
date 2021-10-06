@@ -14,7 +14,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 /**
  * @author ruifeng.shan
- * @date 15-9-1
+ * date: 15-9-1
  */
 @Description(name = "type_of_day"
         , value = "_FUNC_(date) - get type of day in china. if normal festival, return 1; if weekend, return 2, if workday return 3, if weekend or festival but work, return 4; if error, return null."

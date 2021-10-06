@@ -20,8 +20,8 @@ public class UDFMd5 extends UDF {
     /**
      * md5 hash.
      *
-     * @param text
-     * @return
+     * @param text 字符串
+     * @return md5 hash.
      */
     public Text evaluate(Text text) {
         if (text == null) {

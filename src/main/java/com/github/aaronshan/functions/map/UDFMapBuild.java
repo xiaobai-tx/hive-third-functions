@@ -13,8 +13,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorFactory;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 15:39
+ * date: 2016-07-27
+ * time: 15:39
  */
 @Description(name = "map_build"
         , value = "_FUNC_(array<K>, array<V>) - returns a map created using the given key/value arrays."

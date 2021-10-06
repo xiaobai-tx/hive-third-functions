@@ -7,8 +7,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 17:05
+ * date: 2016-07-27
+ * time: 17:05
  */
 @Description(name = "gcj_extract_wgs"
         , value = "_FUNC_(gcjLat, gcjLng) - Convert GCJ-02 to WGS-84."

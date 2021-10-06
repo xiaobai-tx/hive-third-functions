@@ -7,8 +7,8 @@ import static java.lang.String.format;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-25
- * @time 15:06
+ * date: 2016-07-25
+ * time: 15:06
  */
 public class JsonPathTokenizer extends AbstractIterator<String> {
     private static final char QUOTE = '\"';

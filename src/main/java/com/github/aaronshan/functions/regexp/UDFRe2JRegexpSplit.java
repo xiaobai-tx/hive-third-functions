@@ -15,8 +15,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 22:38
+ * date: 2018-07-27
+ * time: 22:38
  */
 @Description(name = "regexp_split"
         , value = "_FUNC_(string, string) - returns array of strings split by pattern."

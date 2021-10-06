@@ -8,8 +8,8 @@ import org.apache.hadoop.io.Text;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 16:04
+ * date: 2016-07-27
+ * time: 16:04
  */
 @Description(name = "url_decode"
         , value = "_FUNC_(value) - Unescape the URL encoded value. This function is the inverse of url_encode()"

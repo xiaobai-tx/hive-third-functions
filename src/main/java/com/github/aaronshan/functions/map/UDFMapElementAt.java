@@ -14,8 +14,8 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorUtils;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 15:38
+ * date: 2016-07-27
+ * time: 15:38
  */
 @Description(name = "map_element_at"
         , value = "_FUNC_(x<K, V>, key) - returns value for given key, or NULL if the key is not contained in the map."

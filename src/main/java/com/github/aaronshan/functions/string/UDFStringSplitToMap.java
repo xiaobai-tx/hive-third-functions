@@ -18,8 +18,8 @@ import static com.github.aaronshan.functions.utils.Failures.checkCondition;
 
 /**
  * @author ruifeng.shan
- * @date 2018-07-27
- * @time 00:04
+ * date: 2018-07-27
+ * time: 00:04
  */
 @Description(name = "split_to_map"
         , value = "_FUNC_(string, string, string) - returns a map created using the given key/value arrays."

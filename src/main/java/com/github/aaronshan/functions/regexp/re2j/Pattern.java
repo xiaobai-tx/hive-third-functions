@@ -72,6 +72,7 @@ public final class Pattern implements Serializable {
      * compiling {@code regex} with the default flags (0).
      *
      * @param regex the regular expression
+     * @return returns a new {@code Pattern} corresponding to compiling {@code regex} with the default flags (0).
      * @throws PatternSyntaxException if the pattern is malformed
      */
     public static Pattern compile(String regex) {
@@ -89,6 +90,7 @@ public final class Pattern implements Serializable {
      * @param regex the regular expression
      * @param flags bitwise OR of the flag constants {@code CASE_INSENSITIVE},
      *              {@code DOTALL}, and {@code MULTILINE}
+     * @return a new {@code Pattern} corresponding to compiling {@code regex} with the default flags (0).
      * @throws PatternSyntaxException   if the regular expression is malformed
      * @throws IllegalArgumentException if an unknown flag is given
      */
@@ -176,21 +178,21 @@ public final class Pattern implements Serializable {
     }
 
     /**
-     * Returns the flags used in the constructor.
+     * @return the flags used in the constructor.
      */
     public int flags() {
         return flags;
     }
 
     /**
-     * Returns the options used in the constructor.
+     * @return the options used in the constructor.
      */
     public Options options() {
         return options;
     }
 
     /**
-     * Returns the pattern used in the constructor.
+     * @return the pattern used in the constructor.
      */
     public String pattern() {
         return pattern;
@@ -212,6 +214,7 @@ public final class Pattern implements Serializable {
      * Creates a new {@code Matcher} matching the pattern against the input.
      *
      * @param input the input {@link Slice}
+     * @return a new {@code Matcher} matching the pattern against the input.
      */
     public Matcher matcher(Slice input) {
         return new Matcher(this, input);

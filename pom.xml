@@ -8,6 +8,18 @@
     <artifactId>hive-third-functions</artifactId>
     <version>2.2.1</version>
 
+    <name>hive-third-functions</name>
+    <url>https://github.com/aaronshan/hive-third-functions</url>
+    <description>Some useful custom hive udf functions, especial array, json, math, string functions.</description>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <scm>
         <url>https://github.com/aaronshan</url>
         <connection>https://github.com/aaronshan/hive-third-functions.git</connection>
@@ -289,6 +301,20 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <!-- GPG -->
                     <plugin> <!-- 进行延签 -->
                         <groupId>org.apache.maven.plugins</groupId>
@@ -307,11 +333,11 @@
             </build>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>oss</id>
+                    <id>snapshots</id>
                     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
                 </snapshotRepository>
                 <repository>
-                    <id>oss</id>
+                    <id>releases</id>
                     <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
             </distributionManagement>

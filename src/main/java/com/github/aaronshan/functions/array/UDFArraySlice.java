@@ -16,8 +16,8 @@ import org.apache.hadoop.io.IntWritable;
 
 /**
  * @author ruifeng.shan
- * @date 2016-07-27
- * @time 10:24
+ * date: 2016-07-27
+ * time: 10:24
  */
 @Description(name = "array_slice"
         , value = "_FUNC_(array<E>, start, length) - subsets array starting from index start (or starting from the end if start is negative) with a length of length."
