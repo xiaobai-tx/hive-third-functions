@@ -1,6 +1,7 @@
 package com.github.aaronshan.functions.array;
 
 import com.github.aaronshan.functions.fastuitl.ints.IntArrays;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -145,10 +146,10 @@ public class UDFArrayIntersect extends GenericUDF {
                 leftCurrentPosition++;
                 rightCurrentPosition++;
 
-                while (leftCurrentPosition < leftArrayLength && compare(leftArrayOI, leftArray, leftBasePosition, leftCurrentPosition) == 0) {
+                while (leftCurrentPosition < leftArrayLength && compare(leftArrayOI, leftArray, leftPositions, leftBasePosition, leftCurrentPosition) == 0) {
                     leftCurrentPosition++;
                 }
-                while (rightCurrentPosition < rightArrayLength && compare(rightArrayOI, rightArray, rightBasePosition, rightCurrentPosition) == 0) {
+                while (rightCurrentPosition < rightArrayLength && compare(rightArrayOI, rightArray, rightPositions, rightBasePosition, rightCurrentPosition) == 0) {
                     rightCurrentPosition++;
                 }
             }
@@ -157,10 +158,10 @@ public class UDFArrayIntersect extends GenericUDF {
         return result;
     }
 
-    private int compare(ListObjectInspector arrayOI, Object array, int position1, int position2) {
+    private int compare(ListObjectInspector arrayOI, Object array, int[] positions, int position1, int position2) {
         ObjectInspector arrayElementOI = arrayOI.getListElementObjectInspector();
-        Object arrayElementTmp1 = arrayOI.getListElement(array, leftPositions[position1]);
-        Object arrayElementTmp2 = arrayOI.getListElement(array, leftPositions[position2]);
+        Object arrayElementTmp1 = arrayOI.getListElement(array, positions[position1]);
+        Object arrayElementTmp2 = arrayOI.getListElement(array, positions[position2]);
         return ObjectInspectorUtils.compare(arrayElementTmp1, arrayElementOI, arrayElementTmp2, arrayElementOI);
     }
 
